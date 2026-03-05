@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.DS_Store
+*.log
+.cursor/
+
+# Vite
+*.local
+
+# Otros
+receptive-rotation/
