@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-blue: #00d4ff;
+  --neon-cyan: #00f5ff;
+  --neon-purple: #a855f7;
+  --neon-violet: #8b5cf6;
+  --space-dark: #0a0a1a;
+  --space-deeper: #050510;
+  --glow-soft: 0 0 40px rgba(0, 212, 255, 0.15), 0 0 80px rgba(168, 85, 247, 0.1);
+  --glass-bg: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-space-deeper text-white antialiased;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+.glass {
+  @apply backdrop-blur-xl rounded-2xl border;
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  box-shadow: var(--glow-soft);
+}
+
+.glass-strong {
+  @apply backdrop-blur-2xl rounded-2xl border border-white/10;
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.08), 0 0 120px rgba(168, 85, 247, 0.05);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple;
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+/* Montañas Tron - líneas de grid sutiles */
+.tron-grid {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Partículas */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Botón CTA con glow */
+.btn-glow {
+  @apply relative overflow-hidden rounded-xl font-semibold transition-all duration-300;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), 0 0 50px rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Focus visible para accesibilidad */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-neon-blue rounded;
+}
