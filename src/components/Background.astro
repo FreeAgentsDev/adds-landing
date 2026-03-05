@@ -1,0 +1,55 @@
+---
+// Fondo tipo galaxy + montañas Tron + partículas
+---
+<div class="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <!-- Gradiente base galaxy -->
+  <div class="absolute inset-0 bg-gradient-to-b from-space-deeper via-space-dark to-space-deeper" />
+  <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-blue/10" />
+  <div class="absolute inset-0 bg-gradient-to-t from-neon-blue/5 via-transparent to-neon-purple/5" />
+
+  <!-- Grid sutil tipo Tron -->
+  <div class="tron-grid absolute inset-0 opacity-60" />
+
+  <!-- Montañas Tron (SVG) - siluetas de líneas neón -->
+  <svg class="absolute bottom-0 left-0 w-full h-2/5 opacity-30" viewBox="0 0 1200 400" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="tron-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+        <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.5" />
+        <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Capa 1 montañas -->
+    <path d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.5" filter="url(#glow)" class="animate-glow-pulse" />
+    <path d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.4" opacity="0.7" filter="url(#glow)" />
+    <path d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.3" opacity="0.5" filter="url(#glow)" />
+  </svg>
+
+  <!-- Partículas (se rellenan con script) -->
+  <div id="particles-container" class="absolute inset-0 pointer-events-none" />
+</div>
+
+<script>
+  (function initParticles() {
+    const container = document.getElementById('particles-container');
+    if (!container) return;
+    const count = 60;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 4 + 's';
+      p.style.width = (1 + Math.random() * 2) + 'px';
+      p.style.height = p.style.width;
+      container.appendChild(p);
+    }
+  })();
+</script>
