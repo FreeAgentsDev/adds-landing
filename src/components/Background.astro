@@ -1,24 +1,35 @@
 ---
-// Fondo tipo galaxy + montañas Tron + partículas
+// Fondo fa-brand: galaxia índigo/púrpura, campo de estrellas, grid neón 3D
 ---
 <div class="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-  <!-- Gradiente base galaxy -->
-  <div class="absolute inset-0 bg-gradient-to-b from-space-deeper via-space-dark to-space-deeper" />
-  <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-blue/10" />
-  <div class="absolute inset-0 bg-gradient-to-t from-neon-blue/5 via-transparent to-neon-purple/5" />
+  <!-- Gradiente base fa-brand: índigo oscuro → púrpura → azul -->
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(180deg, #0f0a1f 0%, #1e1b4b 25%, #312e81 50%, #1e3a5f 75%, #0f172a 100%);"
+  />
+  <div
+    class="absolute inset-0 opacity-80"
+    style="background: radial-gradient(ellipse 80% 50% at 50% 120%, rgba(59, 130, 246, 0.25) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 40%), radial-gradient(ellipse 50% 30% at 20% 20%, rgba(217, 70, 239, 0.1) 0%, transparent 35%);"
+  />
 
-  <!-- Grid sutil tipo Tron -->
-  <div class="tron-grid absolute inset-0 opacity-60" />
+  <!-- Campo de estrellas (CSS) -->
+  <div class="starfield" />
 
-  <!-- Montañas Tron (SVG) - siluetas de líneas neón -->
-  <svg class="absolute bottom-0 left-0 w-full h-2/5 opacity-30" viewBox="0 0 1200 400" preserveAspectRatio="none">
+  <!-- Grid Tron en toda la pantalla -->
+  <div class="tron-grid absolute inset-0 opacity-90" />
+
+  <!-- Grid neón 3D (suelo digital) -->
+  <div class="grid-neon-floor" />
+
+  <!-- Montañas neón tipo Tron (siluetas azul–magenta) -->
+  <svg class="absolute bottom-0 left-0 w-full h-2/5 min-h-[280px] opacity-75" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
     <defs>
-      <linearGradient id="tron-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <linearGradient id="fa-brand-grad" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
         <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.5" />
-        <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.4" />
       </linearGradient>
-      <filter id="glow">
+      <filter id="glow-brand">
         <feGaussianBlur stdDeviation="2" result="coloredBlur" />
         <feMerge>
           <feMergeNode in="coloredBlur" />
@@ -26,13 +37,12 @@
         </feMerge>
       </filter>
     </defs>
-    <!-- Capa 1 montañas -->
-    <path d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.5" filter="url(#glow)" class="animate-glow-pulse" />
-    <path d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.4" opacity="0.7" filter="url(#glow)" />
-    <path d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z" fill="none" stroke="url(#tron-grad)" strokeWidth="0.3" opacity="0.5" filter="url(#glow)" />
+    <path d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1.2" filter="url(#glow-brand)" />
+    <path d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1" opacity="0.85" filter="url(#glow-brand)" />
+    <path d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="0.8" opacity="0.7" filter="url(#glow-brand)" />
   </svg>
 
-  <!-- Partículas (se rellenan con script) -->
+  <!-- Partículas / estrellas (script) -->
   <div id="particles-container" class="absolute inset-0 pointer-events-none" />
 </div>
 
@@ -40,15 +50,16 @@
   (function initParticles() {
     const container = document.getElementById('particles-container');
     if (!container) return;
-    const count = 60;
+    const count = 120;
     for (let i = 0; i < count; i++) {
       const p = document.createElement('div');
-      p.className = 'particle';
+      p.className = Math.random() > 0.5 ? 'particle' : 'particle particle--dim';
       p.style.left = Math.random() * 100 + '%';
       p.style.top = Math.random() * 100 + '%';
       p.style.animationDelay = Math.random() * 4 + 's';
-      p.style.width = (1 + Math.random() * 2) + 'px';
-      p.style.height = p.style.width;
+      const size = 1 + Math.random() * 2;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
       container.appendChild(p);
     }
   })();

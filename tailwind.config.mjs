@@ -1,15 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        primary: '#13c8ec',
+        'background-light': '#f6f8f8',
+        'background-dark': '#0f0a1f',
+        electric: { blue: '#3b82f6' },
         neon: {
           blue: '#00d4ff',
           cyan: '#00f5ff',
           purple: '#a855f7',
           violet: '#8b5cf6',
           pink: '#ec4899',
+          magenta: '#d946ef',
+        },
+        indigo: {
+          deep: '#1e1b4b',
+          dark: '#312e81',
         },
         space: {
           dark: '#0a0a1a',
@@ -18,8 +28,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Outfit', 'system-ui', 'sans-serif'],
-        display: ['Orbitron', 'monospace'],
+        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

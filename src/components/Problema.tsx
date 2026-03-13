@@ -1,43 +1,25 @@
-import { motion } from 'framer-motion';
-
 const problems = [
-  'Páginas web que no venden ni generan leads.',
-  'Procesos manuales que consumen tiempo y generan errores.',
-  'Herramientas desconectadas: CRM, email, facturación por separado.',
-  'Proyectos que se alargan y no se priorizan por impacto.',
-  'Falta de datos para tomar decisiones de negocio.',
+  { icon: 'broken_image', label: 'Páginas que no venden' },
+  { icon: 'timer_off', label: 'Procesos manuales lentos' },
+  { icon: 'link_off', label: 'Herramientas desconectadas' },
 ];
 
 export default function Problema() {
   return (
-    <section id="problema" className="relative py-20 sm:py-28 px-4">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          className="glass-strong rounded-2xl p-8 sm:p-12 border-neon-purple/20"
-        >
-          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white leading-tight mb-10">
-            La mayoría compra páginas web.{' '}
-            <span className="text-gradient">Las empresas inteligentes construyen sistemas.</span>
-          </p>
-          <ul className="space-y-3">
-            {problems.map((text, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="flex items-start gap-3 text-white/85"
-              >
-                <span className="text-neon-blue mt-0.5">×</span>
-                <span>{text}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+    <section className="bg-slate-900/50 py-24 px-4 border-y border-slate-800">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-white text-3xl font-bold mb-12">¿Tu tecnología te frena o te impulsa?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {problems.map((p) => (
+            <div
+              key={p.icon}
+              className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-background-dark/50 border border-slate-800"
+            >
+              <span className="material-symbols-outlined text-red-400 text-4xl">{p.icon}</span>
+              <p className="text-white text-lg font-semibold">{p.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -4,14 +4,14 @@ interface Props {
   description?: string;
   image?: string;
 }
-const { title = 'FreeAgents | Full Business Growth', description = 'Construimos tecnología que hace crecer negocios. Desarrollo a medida, optimización de procesos y estrategia digital.', image = '/fa-logo.png' } = Astro.props;
+const { title = 'FreeAgents | Transformamos tu Tecnología en Crecimiento', description = 'No solo construimos software, creamos sistemas que venden, escalan y automatizan tu éxito empresarial.', image = '/fa-logo.png' } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const canonicalUrl = siteUrl ? `${siteUrl}${Astro.url.pathname}` : '';
 const ogImageUrl = siteUrl ? `${siteUrl}${image.startsWith('/') ? image : `/${image}`}` : '';
 ---
 <!doctype html>
-<html lang="es">
+<html class="dark" lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,8 +34,10 @@ const ogImageUrl = siteUrl ? `${siteUrl}${image.startsWith('/') ? image : `/${im
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
   </head>
-  <body>
+  <body class="bg-transparent text-slate-100 antialiased min-h-screen">
     <slot />
   </body>
 </html>

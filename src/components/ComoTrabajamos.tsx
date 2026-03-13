@@ -1,53 +1,31 @@
-import { motion } from 'framer-motion';
-
 const steps = [
-  { num: '01', title: 'Descubrimiento', desc: 'Entendemos tu negocio, objetivos y dolores.' },
-  { num: '02', title: 'Estrategia', desc: 'Priorizamos qué construir y en qué orden.' },
-  { num: '03', title: 'Diseño y arquitectura', desc: 'Diseñamos la solución y la estructura técnica.' },
-  { num: '04', title: 'Desarrollo', desc: 'Construimos en sprints con feedback continuo.' },
-  { num: '05', title: 'Lanzamiento y mejora', desc: 'Desplegamos, medimos y optimizamos.' },
+  { num: 1, title: 'Descubrimiento', desc: 'Entendemos tus retos y objetivos.' },
+  { num: 2, title: 'Estrategia', desc: 'Trazamos la hoja de ruta técnica.' },
+  { num: 3, title: 'Diseño', desc: 'UX/UI centrada en la conversión.' },
+  { num: 4, title: 'Desarrollo', desc: 'Construcción ágil y robusta.' },
+  { num: 5, title: 'Lanzamiento', desc: 'Despliegue y optimización.' },
 ];
 
 export default function ComoTrabajamos() {
   return (
-    <section id="como-trabajamos" className="relative py-20 sm:py-28 px-4">
-      <div className="max-w-4xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-center text-white mb-4"
-        >
-          Cómo trabajamos
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center text-white/75 text-lg mb-14"
-        >
-          Proceso claro y orientado a resultados.
-        </motion.p>
-
-        <div className="space-y-6">
-          {steps.map((step, i) => (
-            <motion.article
-              key={step.num}
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: i * 0.08 }}
-              className="glass rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start hover:border-neon-blue/30 transition-colors"
-            >
-              <span className="font-display text-3xl sm:text-4xl font-bold text-neon-blue/80 shrink-0">
-                {step.num}
-              </span>
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-white/75 leading-relaxed">{step.desc}</p>
+    <section className="py-24 px-4" id="proceso">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-center text-white text-4xl font-black mb-16">Metodología de Escala</h2>
+        <div className="relative">
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-800 -translate-y-1/2 z-0" />
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-10">
+            {steps.map((step) => (
+              <div key={step.num} className="flex flex-col items-center text-center gap-4">
+                <div
+                  className="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]"
+                >
+                  {step.num}
+                </div>
+                <h6 className="text-white font-bold">{step.title}</h6>
+                <p className="text-slate-500 text-sm">{step.desc}</p>
               </div>
-            </motion.article>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

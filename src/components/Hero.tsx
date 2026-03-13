@@ -1,84 +1,46 @@
-import { motion } from 'framer-motion';
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-};
-
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-16 sm:pt-28">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="max-w-6xl mx-auto w-full text-center"
-      >
-        <motion.div variants={item} className="flex justify-center mb-6">
-          <img
-            src="/fa-logo.png"
-            alt="FreeAgents"
-            className="h-16 w-auto sm:h-20 md:h-24 animate-float"
-            style={{ filter: 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.3))' }}
-          />
-        </motion.div>
-        <motion.h1
-          variants={item}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white glow-text mb-3"
-        >
-          FREE AGENTS
-        </motion.h1>
-        <motion.p variants={item} className="text-xl sm:text-2xl text-neon-cyan/90 font-medium mb-2">
-          Ya es una realidad.
-        </motion.p>
-        <motion.p variants={item} className="text-white/80 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
-          Construimos tecnología que hace crecer negocios.
-        </motion.p>
-        <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a
-            href="#contacto"
-            className="btn-glow inline-flex items-center justify-center px-8 py-4 bg-neon-blue/30 text-white border border-neon-blue/60 rounded-xl font-semibold text-lg hover:bg-neon-blue/50 active:scale-[0.98] transition-transform"
-          >
-            Agendar llamada estratégica
-          </a>
-          <a
-            href="#como-trabajamos"
-            className="inline-flex items-center justify-center px-8 py-4 glass text-white rounded-xl font-semibold text-lg hover:border-neon-blue/40 active:scale-[0.98] transition-all"
-          >
-            Ver cómo trabajamos
-          </a>
-        </motion.div>
-
-        {/* Full Business Growth - explicación con imagen */}
-        <motion.div
-          variants={item}
-          className="glass-strong rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto text-left"
-        >
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-4 flex items-center gap-2">
-            <span className="text-gradient">Full Business Growth</span>
-          </h2>
-          <p className="text-white/85 mb-6 leading-relaxed">
-            No solo hacemos sitios web: construimos <strong className="text-neon-cyan">sistemas que escalan</strong> tu negocio.
-            Full Business Growth es nuestro enfoque: desarrollo a medida, automatización, integraciones y estrategia digital
-            para que cada pieza de software impulse ventas, eficiencia y crecimiento real.
-          </p>
-          <div className="rounded-xl overflow-hidden border border-white/10 shadow-neon">
-            <img
-              src="/fullbusinessgrowth.png"
-              alt="FreeAgents Full Business Growth - desarrollo de software que impulsa el crecimiento"
-              className="w-full h-auto"
+    <section id="calendly" className="relative overflow-hidden pt-10 pb-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
+          <div className="flex flex-col gap-6 flex-1 lg:max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <span className="text-primary text-xs font-bold uppercase tracking-widest">Software Factory 4.0</span>
+            </div>
+            <div className="flex flex-col gap-4">
+              <h1 className="text-white text-4xl sm:text-5xl font-black leading-tight tracking-tight neon-glow">
+                ¿Tu negocio pierde ventas por tecnología que no convierte?
+              </h1>
+              <p className="text-slate-300 text-lg sm:text-xl">
+                Webs que no venden, procesos manuales que consumen horas, herramientas desconectadas. La mayoría de empresas deja dinero sobre la mesa sin saberlo.
+              </p>
+              <p className="text-slate-400 text-base sm:text-lg">
+                En FreeAgents convertimos tu tecnología en un sistema que{' '}
+                <span className="text-primary font-semibold">vende, escala y automatiza</span>{' '}
+                — sin que tengas que ser experto en nada.
+              </p>
+            </div>
+            <a
+              href="#soluciones"
+              className="border border-slate-600 text-slate-300 px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-all inline-flex items-center gap-2 w-fit"
+            >
+              <span className="material-symbols-outlined text-lg">arrow_forward</span>
+              Ver soluciones
+            </a>
+          </div>
+          <div className="flex-1 w-full min-w-0">
+            <div
+              className="calendly-inline-widget rounded-2xl overflow-hidden border border-slate-700/50"
+              data-url="https://calendly.com/freeagentsdev/30min"
+              style={{ minWidth: '320px', height: '700px' }}
             />
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,17 +1,46 @@
 ---
 const currentYear = new Date().getFullYear();
 ---
-<footer class="relative border-t border-white/5 py-12 px-4">
-  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-    <a href="#" class="flex items-center gap-2" aria-label="FreeAgents">
-      <img src="/fa-logo.png" alt="FreeAgents" class="h-8 w-auto opacity-90" width="96" height="32" />
-    </a>
-    <p class="text-white/50 text-sm">
-      © {currentYear} FreeAgents. Full Business Growth.
-    </p>
-    <div class="flex gap-6">
-      <a href="#contacto" class="text-white/60 hover:text-neon-blue text-sm font-medium transition-colors">Contacto</a>
-      <a href="#que-es" class="text-white/60 hover:text-neon-blue text-sm font-medium transition-colors">Qué es FreeAgents</a>
+<footer class="bg-background-dark/90 backdrop-blur-sm pt-20 pb-10 border-t border-slate-800 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="/fa-logo.png" alt="FreeAgents" class="size-8 shrink-0 rounded-full object-cover" width="32" height="32" />
+          <h2 class="text-white text-xl font-black tracking-tight">FreeAgents</h2>
+        </div>
+        <p class="text-slate-500 max-w-xs mb-6">
+          El aliado tecnológico de las empresas que no se conforman. Software para el crecimiento real.
+        </p>
+      </div>
+      <div>
+        <h6 class="text-white font-bold mb-6">Quick Links</h6>
+        <ul class="space-y-4 text-slate-500">
+          <li><a href="#soluciones" class="hover:text-primary transition-colors">Soluciones</a></li>
+          <li><a href="#proceso" class="hover:text-primary transition-colors">Metodología</a></li>
+          <li><a href="#contacto" class="hover:text-primary transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-white font-bold mb-6">Contacto</h6>
+        <ul class="space-y-4 text-slate-500">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">mail</span>
+            <a href="mailto:hello@freeagents.tech" class="hover:text-primary transition-colors">hello@freeagents.tech</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">location_on</span>
+            Global Operations
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-sm">
+      <p>© {currentYear} FreeAgents. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-primary transition-colors">Privacidad</a>
+        <a href="#" class="hover:text-primary transition-colors">Términos</a>
+      </div>
     </div>
   </div>
 </footer>

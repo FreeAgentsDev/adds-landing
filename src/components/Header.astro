@@ -1,58 +1,48 @@
 ---
 const navLinks = [
-  { href: '#que-es', label: 'Qué es FreeAgents' },
-  { href: '#problema', label: 'Problema' },
-  { href: '#solucion', label: 'Solución' },
-  { href: '#como-trabajamos', label: 'Cómo trabajamos' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#soluciones', label: 'Soluciones' },
+  { href: '#proceso', label: 'Metodología' },
 ];
+const CALENDLY_URL = 'https://calendly.com/freeagentsdev/30min';
 ---
-<header class="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-white/5">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-18">
-    <a href="#" class="flex items-center gap-2 group" aria-label="FreeAgents inicio">
-      <img src="/fa-logo.png" alt="FreeAgents" class="h-9 w-auto sm:h-10 transition transform group-hover:scale-105" width="120" height="40" />
+<header class="sticky top-0 z-50 bg-background-dark/85 backdrop-blur-md border-b border-primary/10">
+  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <a href="#" class="flex items-center gap-3" aria-label="FreeAgents inicio">
+      <img src="/fa-logo.png" alt="FreeAgents" class="size-10 shrink-0 rounded-full object-cover" width="40" height="40" />
+      <h2 class="text-white text-xl font-black tracking-tight">FreeAgents</h2>
     </a>
-    <ul class="hidden md:flex items-center gap-6">
+    <nav class="hidden md:flex gap-8 items-center">
       {navLinks.map((link) => (
-        <li>
-          <a href={link.href} class="text-sm font-medium text-white/80 hover:text-neon-blue transition-colors duration-200">
-            {link.label}
-          </a>
-        </li>
+        <a href={link.href} class="text-slate-300 hover:text-primary transition-colors text-sm font-medium">
+          {link.label}
+        </a>
       ))}
-    </ul>
+      <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="bg-primary text-background-dark px-5 py-2 rounded-lg font-bold text-sm hover:brightness-110 transition-all">
+        Agendar
+      </a>
+    </nav>
     <button
       type="button"
       id="menu-toggle"
-      class="md:hidden p-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-neon-blue transition-colors"
+      class="md:hidden p-2 text-primary"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Abrir menú"
     >
-      <svg class="w-6 h-6 menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <svg class="w-6 h-6 menu-icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+      <span class="material-symbols-outlined">menu</span>
     </button>
-    <a href="#contacto" class="hidden md:inline-flex btn-glow px-4 py-2.5 text-sm bg-neon-blue/20 text-neon-cyan border border-neon-blue/50 rounded-xl hover:bg-neon-blue/30 transition-all duration-200 active:scale-[0.98]">
-      Agendar llamada
-    </a>
-  </nav>
-  <div id="mobile-menu" class="hidden md:hidden glass-strong border-t border-white/5 px-4 py-4" aria-label="Menú móvil">
-    <ul class="flex flex-col gap-1">
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 px-4 py-4 bg-background-dark" aria-label="Menú móvil">
+    <ul class="flex flex-col gap-2">
       {navLinks.map((link) => (
         <li>
-          <a href={link.href} class="block py-3 text-white/85 hover:text-neon-blue transition-colors rounded-lg px-2 mobile-nav-link">
+          <a href={link.href} class="block py-2 text-slate-300 hover:text-primary transition-colors mobile-nav-link">
             {link.label}
           </a>
         </li>
       ))}
       <li>
-        <a href="#contacto" class="block py-3 text-neon-cyan font-medium rounded-lg px-2 mobile-nav-link">
-          Agendar llamada
-        </a>
+        <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" class="block py-2 text-primary font-bold mobile-nav-link">Agendar</a>
       </li>
     </ul>
   </div>
@@ -61,22 +51,16 @@ const navLinks = [
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const openIcon = document.querySelector('.menu-icon-open');
-  const closeIcon = document.querySelector('.menu-icon-close');
   const links = document.querySelectorAll('.mobile-nav-link');
 
   function closeMenu() {
     menu?.classList.add('hidden');
     toggle?.setAttribute('aria-expanded', 'false');
-    openIcon?.classList.remove('hidden');
-    closeIcon?.classList.add('hidden');
   }
 
   toggle?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('hidden') === false;
-    toggle?.setAttribute('aria-expanded', String(open));
-    openIcon?.classList.toggle('hidden', open);
-    closeIcon?.classList.toggle('hidden', !open);
+    menu?.classList.toggle('hidden');
+    toggle?.setAttribute('aria-expanded', String(!menu?.classList.contains('hidden')));
   });
 
   links.forEach((link) => link.addEventListener('click', closeMenu));
