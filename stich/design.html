@@ -1,0 +1,378 @@
+<!-- Landing Page FreeAgents - Conversión High-Tech -->
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FreeAgents | Transformamos tu Tecnología en Crecimiento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet"/>
+<!-- Tema alineado con tailwind.config.mjs del proyecto Astro -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#0f0a1f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(19, 200, 236, 0.5);
+        }
+        .border-neon {
+            border: 1px solid rgba(19, 200, 236, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    /* Fondo Tron: grid + montañas neón (alineado con Background.astro) */
+    .fa-bg-tron {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      overflow: hidden;
+    }
+    .fa-bg-tron .grad-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #0f0a1f 0%, #1e1b4b 25%, #312e81 50%, #1e3a5f 75%, #0f172a 100%);
+    }
+    .fa-bg-tron .grad-glow {
+      position: absolute;
+      inset: 0;
+      opacity: 0.8;
+      background: radial-gradient(ellipse 80% 50% at 50% 120%, rgba(59, 130, 246, 0.25) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 40%), radial-gradient(ellipse 50% 30% at 20% 20%, rgba(217, 70, 239, 0.1) 0%, transparent 35%);
+    }
+    .fa-bg-tron .tron-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.9;
+      background-image: linear-gradient(rgba(0, 212, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .fa-bg-tron .grid-floor {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: linear-gradient(to top, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+      transform: perspective(400px) rotateX(55deg);
+      transform-origin: center bottom;
+      pointer-events: none;
+    }
+    .fa-bg-tron .grid-floor::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(0, 212, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.2) 1px, transparent 1px);
+      background-size: 48px 48px;
+      filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+    }
+  </style>
+  </head>
+<body class="bg-transparent text-slate-100 antialiased min-h-screen">
+<!-- Fondo Tron: gradiente + grid + montañas neón -->
+<div class="fa-bg-tron" aria-hidden="true">
+  <div class="grad-base"></div>
+  <div class="grad-glow"></div>
+  <div class="tron-grid"></div>
+  <div class="grid-floor"></div>
+  <svg class="absolute bottom-0 left-0 w-full h-2/5 min-h-[280px] opacity-75" style="height: 40%; min-height: 280px;" viewBox="0 0 1200 400" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="fa-mountains-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+        <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.5" />
+        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.4" />
+      </linearGradient>
+      <filter id="fa-glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <path d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z" fill="none" stroke="url(#fa-mountains-grad)" stroke-width="1.2" filter="url(#fa-glow)" />
+    <path d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z" fill="none" stroke="url(#fa-mountains-grad)" stroke-width="1" opacity="0.85" filter="url(#fa-glow)" />
+    <path d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z" fill="none" stroke="url(#fa-mountains-grad)" stroke-width="0.8" opacity="0.7" filter="url(#fa-glow)" />
+  </svg>
+</div>
+<!-- TopAppBar / Header -->
+<header class="sticky top-0 z-50 bg-background-dark/85 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+<div class="flex items-center gap-4">
+<div class="md:hidden" aria-label="Menú"><span class="material-symbols-outlined text-primary">menu</span></div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#soluciones">Soluciones</a>
+<a class="text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#proceso">Metodología</a>
+</div>
+</div>
+<a class="bg-primary text-background-dark px-5 py-2 rounded-lg font-bold text-sm hover:brightness-110 transition-all inline-block" href="#calendly">Agendar</a>
+</div>
+</header>
+<main>
+<!-- Section 1: Hero (AIDA) + Calendly embebido -->
+<section id="calendly" class="relative overflow-hidden pt-10 pb-20 px-4">
+<div class="max-w-7xl mx-auto @container">
+<div class="flex flex-col gap-12 @[864px]:flex-row @[864px]:items-start @[864px]:gap-16">
+<!-- Columna texto AIDA -->
+<div class="flex flex-col gap-6 flex-1 @[864px]:max-w-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">Software Factory 4.0</span>
+</div>
+<h1 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-5xl neon-glow">
+¿Tu negocio pierde ventas por tecnología que no convierte?
+</h1>
+<p class="text-slate-300 text-lg @[480px]:text-xl">
+Webs que no venden, procesos manuales que consumen horas, herramientas desconectadas. La mayoría de empresas deja dinero sobre la mesa sin saberlo.
+</p>
+<p class="text-slate-400 text-base @[480px]:text-lg">
+En FreeAgents convertimos tu tecnología en un sistema que <span class="text-primary font-semibold">vende, escala y automatiza</span> — sin que tengas que ser experto en nada. Resultados medibles, código sólido, estrategia de negocio aplicada a cada línea.
+</p>
+<a class="border border-slate-600 text-slate-300 px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-all inline-flex items-center gap-2 w-fit" href="#soluciones">
+<span class="material-symbols-outlined text-lg">arrow_forward</span> Ver soluciones
+</a>
+</div>
+<!-- Columna Calendly (en lugar de imagen y botones Agendar/Demo) -->
+<div class="flex-1 w-full min-w-0">
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget rounded-2xl overflow-hidden border border-slate-700/50" data-url="https://calendly.com/freeagentsdev/30min" style="min-width:320px;height:700px;"></div>
+<!-- Calendly inline widget end -->
+</div>
+</div>
+</div>
+</section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Section 2: Problem Block -->
+<section class="bg-slate-900/50 py-24 px-4 border-y border-slate-800">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="text-white text-3xl font-bold mb-12">¿Tu tecnología te frena o te impulsa?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center gap-4 p-6 rounded-2xl bg-background-dark/50 border border-slate-800">
+<span class="material-symbols-outlined text-red-400 text-4xl">broken_image</span>
+<p class="text-white text-lg font-semibold">Páginas que no venden</p>
+</div>
+<div class="flex flex-col items-center gap-4 p-6 rounded-2xl bg-background-dark/50 border border-slate-800">
+<span class="material-symbols-outlined text-red-400 text-4xl">timer_off</span>
+<p class="text-white text-lg font-semibold">Procesos manuales lentos</p>
+</div>
+<div class="flex flex-col items-center gap-4 p-6 rounded-2xl bg-background-dark/50 border border-slate-800">
+<span class="material-symbols-outlined text-red-400 text-4xl">link_off</span>
+<p class="text-white text-lg font-semibold">Herramientas desconectadas</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Solution Cards -->
+<section class="py-24 px-4 bg-transparent" id="soluciones">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Nuestras Soluciones</h2>
+<h3 class="text-white text-4xl font-black">Ecosistemas de alto rendimiento</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-primary/50 transition-all flex flex-col gap-6">
+<div class="size-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all">
+<span class="material-symbols-outlined text-3xl">language</span>
+</div>
+<h4 class="text-xl font-bold text-white">Web Estratégica</h4>
+<p class="text-slate-400 text-sm leading-relaxed">Landing pages y plataformas optimizadas para convertir visitantes en clientes de forma recurrente.</p>
+</div>
+<!-- Card 2 -->
+<div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-primary/50 transition-all flex flex-col gap-6">
+<div class="size-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h4 class="text-xl font-bold text-white">Automatización Ventas</h4>
+<p class="text-slate-400 text-sm leading-relaxed">Sistemas que trabajan 24/7 captando y nutriendo prospectos sin intervención manual.</p>
+</div>
+<!-- Card 3 -->
+<div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-primary/50 transition-all flex flex-col gap-6">
+<div class="size-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all">
+<span class="material-symbols-outlined text-3xl">settings_suggest</span>
+</div>
+<h4 class="text-xl font-bold text-white">Sistemas a Medida</h4>
+<p class="text-slate-400 text-sm leading-relaxed">Software diseñado específicamente para resolver los cuellos de botella únicos de tu operación.</p>
+</div>
+<!-- Card 4 -->
+<div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-primary/50 transition-all flex flex-col gap-6">
+<div class="size-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<h4 class="text-xl font-bold text-white">Integraciones Inteligentes</h4>
+<p class="text-slate-400 text-sm leading-relaxed">Conectamos tus CRMs, ERPs y herramientas favoritas para un flujo de datos unificado.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: About FreeAgents (3 Pillars) -->
+<section class="py-24 px-4 bg-slate-900/30">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1">
+<h2 class="text-white text-4xl font-black mb-6">El ADN de FreeAgents</h2>
+<p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                            No somos una agencia más. Somos tu partner tecnológico obsesionado con los resultados de negocio.
+                        </p>
+<div class="space-y-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h5 class="text-white font-bold text-xl">Desarrollo a Medida</h5>
+<p class="text-slate-400">Código limpio, escalable y seguro.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h5 class="text-white font-bold text-xl">Optimización de Procesos</h5>
+<p class="text-slate-400">Reducimos costes mediante la eficiencia digital.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<h5 class="text-white font-bold text-xl">Estrategia Digital</h5>
+<p class="text-slate-400">Visión de negocio aplicada a cada línea de código.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full bg-primary/5 border border-primary/10 rounded-3xl p-8 aspect-video flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<span class="material-symbols-outlined text-[120px] text-primary/30">analytics</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: How we work (5 steps) -->
+<section class="py-24 px-4" id="proceso">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-center text-white text-4xl font-black mb-16">Metodología de Escala</h2>
+<div class="relative">
+<div class="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-800 -translate-y-1/2 z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-10">
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]">1</div>
+<h6 class="text-white font-bold">Descubrimiento</h6>
+<p class="text-slate-500 text-sm">Entendemos tus retos y objetivos.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]">2</div>
+<h6 class="text-white font-bold">Estrategia</h6>
+<p class="text-slate-500 text-sm">Trazamos la hoja de ruta técnica.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]">3</div>
+<h6 class="text-white font-bold">Diseño</h6>
+<p class="text-slate-500 text-sm">UX/UI centrada en la conversión.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]">4</div>
+<h6 class="text-white font-bold">Desarrollo</h6>
+<p class="text-slate-500 text-sm">Construcción ágil y robusta.</p>
+</div>
+<div class="flex flex-col items-center text-center gap-4">
+<div class="size-16 rounded-full bg-slate-900 border-2 border-primary flex items-center justify-center text-white font-black text-2xl shadow-[0_0_15px_rgba(19,200,236,0.2)]">5</div>
+<h6 class="text-white font-bold">Lanzamiento</h6>
+<p class="text-slate-500 text-sm">Despliegue y optimización.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Social Proof -->
+<section class="bg-primary py-16 px-4">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-around items-center gap-12 text-background-dark">
+<div class="text-center">
+<p class="text-5xl font-black mb-2">+100</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-80">Proyectos Lanzados</p>
+</div>
+<div class="text-center">
+<p class="text-5xl font-black mb-2">98%</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-80">Clientes Satisfechos</p>
+</div>
+<div class="text-center">
+<p class="text-5xl font-black mb-2">10M+</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-80">Ingresos Generados</p>
+</div>
+</div>
+</section>
+<!-- Section 7: Contacto + CTA (unificado) -->
+<section class="py-24 px-4 bg-transparent" id="contacto">
+<div class="max-w-7xl mx-auto bg-gradient-to-r from-primary/20 to-transparent p-12 rounded-3xl border-neon relative overflow-hidden">
+<div class="relative z-10 text-center">
+<h2 class="text-white text-4xl md:text-5xl font-black mb-6">¿Listo para escalar?</h2>
+<p class="text-slate-300 text-xl mb-10 max-w-2xl mx-auto">Construyamos el futuro juntos. Nuestra capacidad técnica al servicio de tu visión empresarial.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="flex items-center justify-center gap-3 bg-[#25D366] text-white px-8 py-4 rounded-xl font-bold text-lg hover:brightness-110 transition-all" href="#">
+<span class="material-symbols-outlined">chat</span> Contactar por WhatsApp
+</a>
+<a class="flex items-center justify-center gap-3 bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(19,200,236,0.4)] transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Reservar llamada estratégica
+</a>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-20 -bottom-20 text-[300px] text-primary/5 rotate-12">rocket_launch</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark/90 backdrop-blur-sm pt-20 pb-10 border-t border-slate-800 px-4">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<img src="/fa-logo.png" alt="FreeAgents" class="size-8 shrink-0 rounded-full object-cover" width="32" height="32" />
+<h2 class="text-white text-xl font-black tracking-tight">FreeAgents</h2>
+</div>
+<p class="text-slate-500 max-w-xs mb-6">El aliado tecnológico de las empresas que no se conforman. Software para el crecimiento real.</p>
+</div>
+<div>
+<h6 class="text-white font-bold mb-6">Quick Links</h6>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Soluciones</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Metodología</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Casos de Éxito</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-white font-bold mb-6">Contacto</h6>
+<ul class="space-y-4 text-slate-500">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> hello@freeagents.tech</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Global Operations</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-sm">
+<p>© 2024 FreeAgents. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+<a class="hover:text-primary transition-colors" href="#">Términos</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
