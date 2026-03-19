@@ -1,7 +1,7 @@
 const metrics = [
-  { value: '+100', label: 'Proyectos Lanzados' },
-  { value: '98%', label: 'Clientes Satisfechos' },
-  { value: '10M+', label: 'Ingresos Generados' },
+  { value: '24/7', label: 'Operación Digital Activa' },
+  { value: '3X', label: 'Más Velocidad Operativa' },
+  { value: '-40%', label: 'Tiempo en Tareas Manuales' },
 ];
 
 export default function SocialProof() {
