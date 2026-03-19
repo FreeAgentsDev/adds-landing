@@ -1,6 +1,6 @@
 const metrics = [
   { value: '24/7', label: 'Operación Digital Activa' },
-  { value: '3X', label: 'Más Velocidad Operativa' },
+  { value: '10X', label: 'Más Velocidad Operativa' },
   { value: '-40%', label: 'Tiempo en Tareas Manuales' },
 ];
 
