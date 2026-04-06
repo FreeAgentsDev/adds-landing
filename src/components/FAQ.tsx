@@ -23,9 +23,9 @@ const faqs = [
       'Trabajamos con empresas que quieren crecer con tecnología: desde startups hasta pymes y equipos con operaciones complejas. Si tienes procesos que optimizar, web que no convierte o herramientas desconectadas, podemos ayudarte.',
   },
   {
-    question: '¿Cómo es el proceso de trabajo?',
+    question: '¿Qué pasa si ya tengo herramientas o sistemas funcionando?',
     answer:
-      'Descubrimiento (entendemos tu negocio) → Estrategia (priorizamos qué construir) → Diseño y arquitectura → Desarrollo en sprints con feedback continuo → Lanzamiento y mejora continua. Te mantenemos informado en cada etapa.',
+      'No te pedimos que tires todo y empieces de cero. Evaluamos lo que ya tienes, nos integramos con lo que funciona y construimos lo que falta. La idea es sumar, no reemplazar por capricho.',
   },
   {
     question: '¿Ofrecen mantenimiento o soporte después del lanzamiento?',

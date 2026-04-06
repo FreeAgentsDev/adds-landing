@@ -9,10 +9,10 @@ const EMAIL = 'freeagentsdev@gmail.com';
 const DEFAULT_WHATSAPP_MESSAGE = 'Hola FreeAgents, quiero hablar con un asesor para escalar mi negocio.';
 
 const quickMessages = [
-  'Hola FreeAgents, quiero una landing de alto rendimiento para mi negocio.',
-  'Quiero automatizar procesos y reducir trabajo manual en mi empresa.',
-  'Necesito una reunión para evaluar una app o sistema a medida.',
-  'Quiero conectar mis herramientas y mejorar mi embudo de ventas.',
+  'Hola, quiero saber cómo pueden ayudar a mi negocio.',
+  'Hola, necesito una web que realmente me genere clientes.',
+  'Hola, quiero automatizar procesos en mi empresa.',
+  'Hola, me interesa una reunión para evaluar mi caso.',
 ];
 
 export default function Contacto() {
@@ -58,9 +58,9 @@ export default function Contacto() {
         <div className="max-w-7xl mx-auto relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-indigo-900/45 via-slate-950/70 to-background-dark p-12 shadow-[0_0_70px_rgba(19,200,236,0.14)]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(19,200,236,0.18),transparent_45%),radial-gradient(ellipse_at_bottom_left,rgba(168,85,247,0.16),transparent_50%)]" />
           <div className="relative z-10 text-center">
-            <h2 className="text-white text-4xl md:text-5xl font-black mb-5">¿Listo para escalar?</h2>
+            <h2 className="text-white text-4xl md:text-5xl font-black mb-5">Hablemos de tu negocio</h2>
             <p className="text-slate-200 text-lg sm:text-xl mb-10 max-w-2xl mx-auto">
-              Construyamos el futuro juntos. Nuestra capacidad técnica al servicio de tu visión empresarial.
+              Agenda 30 minutos con nuestro equipo. Escuchamos tu situación, te damos un diagnóstico honesto y si hay fit, arrancamos.
             </p>
 
             <div className="w-full max-w-3xl mx-auto mb-10">

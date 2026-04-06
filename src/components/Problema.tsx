@@ -3,18 +3,18 @@ import { motion } from 'framer-motion';
 const problems = [
   {
     icon: 'broken_image',
-    label: 'Tu web no vende',
-    desc: 'Tienes presencia online pero no genera leads ni cierra negocios. Los visitantes llegan y se van.',
+    label: 'Presencia sin conversión',
+    desc: 'Tu web existe pero no trabaja para ti. Los visitantes llegan, miran y se van sin dejar rastro.',
   },
   {
     icon: 'timer_off',
-    label: 'Tu equipo apaga incendios',
-    desc: 'Procesos manuales, datos en Excel, tareas repetitivas. La operación consume todo el tiempo que debería ir a crecer.',
+    label: 'Operación desconectada',
+    desc: 'Ventas por un lado, operaciones por otro, datos en Excel. Tu equipo gasta más tiempo coordinando que ejecutando.',
   },
   {
     icon: 'link_off',
-    label: 'Cada herramienta es una isla',
-    desc: 'CRM por un lado, ventas por otro, facturación aparte. Sin datos unificados no hay decisiones inteligentes.',
+    label: 'Crecimiento frenado',
+    desc: 'Quieres escalar pero la tecnología no acompaña. Cada cliente nuevo es más caos en vez de más ingreso.',
   },
 ];
 
@@ -28,10 +28,10 @@ export default function Problema() {
           viewport={{ once: true }}
         >
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-black mb-4">
-            Esto le pasa a la mayoría de empresas
+            Cuando cada pieza va por su lado, el negocio no avanza
           </h2>
           <p className="text-slate-400 text-lg mb-14 max-w-2xl mx-auto">
-            Y es exactamente lo que Full Business Growth resuelve.
+            Estos son los síntomas. Full Business Growth es la solución.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -26,7 +26,7 @@ const team = [
     icon: 'code',
   },
   {
-    name: 'Brayan',
+    name: 'Brayan', // TODO: añadir apellido completo
     role: 'Desarrollador',
     desc: 'Backend e integraciones. Conecta las piezas para que todo el ecosistema del cliente fluya sin fricción.',
     icon: 'database',

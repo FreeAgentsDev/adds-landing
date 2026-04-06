@@ -2,28 +2,25 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
   {
-    company: 'LogiTrack',
-    industry: 'Logística y Transporte',
-    quote: 'FreeAgents se sintió como parte de nuestro equipo desde el día uno. Entendieron nuestra operación y construyeron exactamente lo que necesitábamos para dejar de apagar incendios.',
-    author: 'Carlos Mejía',
-    role: 'Director de Operaciones',
-    icon: 'local_shipping',
+    company: 'Valm Beauty',
+    industry: 'Belleza y Cosmética',
+    quote: 'FreeAgents nos construyó un ecommerce que realmente representa nuestra marca. Desde el primer día entendieron nuestra visión y la convirtieron en una experiencia de compra que nuestros clientes aman.',
+    what: 'Implementación de ecommerce',
+    icon: 'storefront',
   },
   {
-    company: 'Venti Digital',
-    industry: 'Agencia de Marketing',
-    quote: 'Por fin tenemos la operación digital que le prometemos a nuestros clientes. Nos acompañaron desde la estrategia hasta la ejecución sin soltar el hilo en ningún momento.',
-    author: 'Andrés Restrepo',
-    role: 'Fundador',
-    icon: 'campaign',
+    company: 'Kevin Jewelry',
+    industry: 'Joyería',
+    quote: 'Teníamos todo disperso — inventario, ventas, clientes, pedidos. FreeAgents nos armó un ecosistema interno completo donde todo está conectado. Ahora operamos como una empresa de verdad.',
+    what: 'Ecosistema interno completo',
+    icon: 'diamond',
   },
   {
-    company: 'Clínica Salud+',
-    industry: 'Salud',
-    quote: 'Nos entendieron como nadie. No nos vendieron tecnología — se sentaron con nosotros, entendieron nuestro flujo y construyeron algo que de verdad usamos todos los días.',
-    author: 'Laura Gómez',
-    role: 'Directora Administrativa',
-    icon: 'health_and_safety',
+    company: 'Prosejurix',
+    industry: 'Servicios Jurídicos',
+    quote: 'Nos ayudaron a eliminar los cuellos de botella que nos frenaban. Construyeron un software de gestión y emisión de documentos que transformó nuestra operación diaria.',
+    what: 'Software de gestión y emisión de documentos',
+    icon: 'gavel',
   },
 ];
 
@@ -55,7 +52,7 @@ export default function CasosDeExito() {
               transition={{ delay: i * 0.12 }}
               className="card-hover glass p-8 rounded-2xl hover:border-primary/25 transition-all flex flex-col"
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="size-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <span className="material-symbols-outlined text-primary text-2xl">{t.icon}</span>
                 </div>
@@ -65,14 +62,16 @@ export default function CasosDeExito() {
                 </div>
               </div>
 
-              <p className="text-slate-300 text-sm leading-relaxed flex-1 mb-6">
+              <div className="mb-5">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary/80 font-medium">
+                  <span className="material-symbols-outlined text-xs">build</span>
+                  {t.what}
+                </span>
+              </div>
+
+              <p className="text-slate-300 text-sm leading-relaxed flex-1">
                 "{t.quote}"
               </p>
-
-              <div className="pt-4 border-t border-white/5">
-                <p className="text-white text-sm font-semibold">{t.author}</p>
-                <p className="text-slate-500 text-xs">{t.role}</p>
-              </div>
             </motion.div>
           ))}
         </div>
