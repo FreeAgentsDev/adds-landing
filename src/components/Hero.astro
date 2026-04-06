@@ -1,49 +1,111 @@
 ---
 ---
-<section id="calendly" class="relative overflow-hidden pt-10 pb-20 px-4">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16">
-      <div class="flex flex-col gap-6 flex-1 lg:max-w-xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<section id="hero" class="relative overflow-hidden pt-20 pb-28 px-4 min-h-[85vh] flex items-center">
+  <!-- Hero-specific glow orb -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-primary/15 via-neon-purple/10 to-transparent blur-[100px] pointer-events-none animate-glow-pulse" />
+
+  <!-- Tron Grid Floor -->
+  <div class="hero-grid" aria-hidden="true">
+    <div class="hero-grid-inner" />
+  </div>
+  <div class="hero-horizon" aria-hidden="true" />
+
+  <div class="max-w-7xl mx-auto w-full relative z-10">
+    <div class="flex flex-col items-center text-center">
+      <div class="flex flex-col gap-7 max-w-3xl">
+        <!-- Badge -->
+        <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 w-fit mx-auto backdrop-blur-sm">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <span class="text-primary text-xs font-bold uppercase tracking-widest">Full Business Growth</span>
         </div>
-        <div class="flex flex-col gap-4">
-          <h1 class="text-white text-4xl sm:text-5xl font-black leading-tight tracking-tight neon-glow">
-            El software que tu empresa se merece
-          </h1>
-          <p class="text-primary font-bold text-xl sm:text-2xl">
-            Procesos automatizados. Equipos más libres. Negocios que escalan.
-          </p>
-          <p class="text-slate-400 text-base sm:text-lg">
-            Construimos tecnología que trabaja tan duro como tú — a medida, desde el primer día.
-          </p>
+
+        <!-- Headline -->
+        <h1 class="reveal reveal-delay-1 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+          No construimos software.
+          <span class="text-gradient"> Construimos crecimiento.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="reveal reveal-delay-2 text-primary/90 font-bold text-lg sm:text-xl md:text-2xl">
+          Full Business Growth: tecnología + estrategia + automatización en un solo equipo.
+        </p>
+
+        <p class="reveal reveal-delay-2 text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+          Conectamos tu operación, tus ventas y tu tecnología para que cada pieza de tu negocio empuje en la misma dirección.
+        </p>
+
+        <!-- CTAs -->
+        <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="#contacto"
+            class="group relative bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-2 shadow-[0_0_25px_rgba(19,200,236,0.3)] hover:shadow-[0_0_40px_rgba(19,200,236,0.5)] hover:scale-[1.02]"
+          >
+            <span class="material-symbols-outlined text-lg transition-transform group-hover:-translate-y-0.5">calendar_today</span>
+            Agendar reunión
+          </a>
+          <a
+            href="#full-business-growth"
+            class="group border border-slate-600 text-slate-300 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/5 hover:border-primary/40 transition-all inline-flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-0.5">arrow_forward</span>
+            ¿Qué es Full Business Growth?
+          </a>
         </div>
-        <a
-          href="#soluciones"
-          class="border border-slate-600 text-slate-300 px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-all inline-flex items-center gap-2 w-fit"
-        >
-          <span class="material-symbols-outlined text-lg">arrow_forward</span>
-          Ver soluciones
-        </a>
-      </div>
-      <div class="flex-1 w-full min-w-0 flex justify-center">
-        <!-- Calendly inline widget begin -->
-        <div class="w-full rounded-3xl p-[1.5px] bg-gradient-to-br from-primary/60 via-neon-purple/40 to-neon-pink/35 shadow-[0_0_45px_rgba(19,200,236,0.2)]">
-          <div class="rounded-[calc(1.5rem-1.5px)] overflow-hidden bg-background-dark/85 backdrop-blur-md border border-white/10">
-            <div
-              class="calendly-inline-widget w-full"
-              data-url="https://calendly.com/freeagentsdev/30min?hide_gdpr_banner=1&background_color=0f0a1f&text_color=ffffff&primary_color=13c8ec"
-              style="min-width:320px;height:1020px;"
-            ></div>
-          </div>
-        </div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+
+        <p class="reveal reveal-delay-3 text-slate-500 text-sm tracking-wide">Sin compromiso · 30 min · 100% gratis</p>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .hero-grid {
+    position: absolute;
+    bottom: 0;
+    left: -20%;
+    right: -20%;
+    height: 55%;
+    perspective: 350px;
+    overflow: hidden;
+    pointer-events: none;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, transparent 70%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, transparent 70%);
+  }
+
+  .hero-grid-inner {
+    position: absolute;
+    inset: 0;
+    transform: rotateX(60deg);
+    transform-origin: center top;
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: grid-scroll 4s linear infinite;
+  }
+
+  @keyframes grid-scroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 60px; }
+  }
+
+  .hero-horizon {
+    position: absolute;
+    bottom: 42%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 5%, rgba(0, 212, 255, 0.3) 30%, rgba(168, 85, 247, 0.25) 50%, rgba(0, 212, 255, 0.3) 70%, transparent 95%);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2), 0 0 60px rgba(168, 85, 247, 0.1);
+    animation: horizon-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes horizon-pulse {
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+  }
+</style>

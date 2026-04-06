@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 :root {
-  /* fa-brand: índigo, púrpura, azul eléctrico, magenta */
   --primary: #13c8ec;
   --electric-blue: #3b82f6;
   --neon-blue: #00d4ff;
@@ -36,18 +35,21 @@ body {
   font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
+/* ───────── Neon text ───────── */
 .neon-glow {
-  text-shadow: 0 0 10px rgba(19, 200, 236, 0.5);
+  text-shadow: 0 0 10px rgba(19, 200, 236, 0.5), 0 0 40px rgba(19, 200, 236, 0.2);
 }
 
 .border-neon {
   border: 1px solid rgba(19, 200, 236, 0.3);
 }
 
+/* ───────── Material Icons ───────── */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
+/* ───────── Glassmorphism ───────── */
 .glass {
   @apply backdrop-blur-xl rounded-2xl border;
   background: var(--glass-bg);
@@ -61,6 +63,7 @@ body {
   box-shadow: 0 0 60px rgba(0, 212, 255, 0.08), 0 0 120px rgba(168, 85, 247, 0.05);
 }
 
+/* ───────── Gradient text ───────── */
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-neon-cyan to-neon-purple;
 }
@@ -69,7 +72,7 @@ body {
   text-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
 }
 
-/* Campo de estrellas (fa-brand) */
+/* ───────── Starfield ───────── */
 .starfield {
   position: absolute;
   inset: 0;
@@ -78,19 +81,20 @@ body {
     radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.6), transparent),
     radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.8), transparent),
     radial-gradient(2px 2px at 80% 10%, rgba(200,220,255,0.7), transparent),
-    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.5), transparent);
-  background-size: 200% 200%, 250% 250%, 180% 180%, 220% 220%, 190% 190%;
-  background-position: 0% 0%, 40% 60%, 100% 0%, 0% 100%, 60% 80%;
-  animation: starfield-shift 30s ease-in-out infinite;
+    radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 10% 80%, rgba(200,220,255,0.6), transparent),
+    radial-gradient(2px 2px at 65% 25%, rgba(255,255,255,0.7), transparent);
+  background-size: 200% 200%, 250% 250%, 180% 180%, 220% 220%, 190% 190%, 210% 210%, 230% 230%;
+  animation: starfield-shift 25s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes starfield-shift {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+  0%, 100% { opacity: 1; background-position: 0% 0%, 40% 60%, 100% 0%, 0% 100%, 60% 80%, 20% 40%, 80% 60%; }
+  50% { opacity: 0.8; background-position: 10% 10%, 50% 50%, 90% 10%, 10% 90%, 50% 70%, 30% 30%, 70% 70%; }
 }
 
-/* Partículas / estrellas que titilan */
+/* ───────── Particles ───────── */
 .particle {
   position: absolute;
   width: 2px;
@@ -104,23 +108,34 @@ body {
 .particle--dim {
   width: 1px;
   height: 1px;
-  background: rgba(200, 220, 255, 0.6);
-  animation-duration: 5s;
+  background: rgba(200, 220, 255, 0.5);
+  animation-duration: 6s;
+  box-shadow: 0 0 4px rgba(200,220,255,0.3);
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
 }
 
-/* Grid neón 3D (suelo digital fa-brand) */
+/* ───────── Tron Grid ───────── */
+.tron-grid {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 70%);
+}
+
+/* ───────── Neon 3D floor ───────── */
 .grid-neon-floor {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 55%;
-  background: linear-gradient(to top, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
   transform: perspective(400px) rotateX(55deg);
   transform-origin: center bottom;
   pointer-events: none;
@@ -131,21 +146,119 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+    linear-gradient(rgba(0, 212, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.18) 1px, transparent 1px);
   background-size: 48px 48px;
   filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
 }
 
-/* Grid sutil tipo Tron (capa extra) */
-.tron-grid {
-  background-image:
-    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* ───────── Animated Orbs ───────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
 }
 
-/* Botón CTA con glow */
+.orb--cyan {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+  top: 10%;
+  left: -5%;
+  animation: orb-drift-1 20s ease-in-out infinite;
+}
+
+.orb--purple {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, transparent 70%);
+  top: 40%;
+  right: -10%;
+  animation: orb-drift-2 25s ease-in-out infinite;
+}
+
+.orb--pink {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
+  bottom: 20%;
+  left: 30%;
+  animation: orb-drift-3 22s ease-in-out infinite;
+}
+
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, 40px) scale(1.1); }
+  66% { transform: translate(-30px, 80px) scale(0.95); }
+}
+
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, -60px) scale(1.15); }
+  66% { transform: translate(40px, -20px) scale(0.9); }
+}
+
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(70px, -30px) scale(1.05); }
+  66% { transform: translate(-40px, 50px) scale(1.1); }
+}
+
+/* ───────── Energy Lines ───────── */
+.energy-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.energy-lines::before,
+.energy-lines::after {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.4) 30%, rgba(168, 85, 247, 0.3) 70%, transparent 100%);
+}
+
+.energy-lines::before {
+  top: 30%;
+  animation: energy-sweep 8s ease-in-out infinite;
+}
+
+.energy-lines::after {
+  top: 70%;
+  animation: energy-sweep 12s ease-in-out 4s infinite;
+  opacity: 0.6;
+}
+
+@keyframes energy-sweep {
+  0% { transform: translateX(-30%); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(30%); opacity: 0; }
+}
+
+/* ───────── Scan Line ───────── */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(19, 200, 236, 0.15), transparent);
+  animation: scan 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+
+/* ───────── Button CTA glow ───────── */
 .btn-glow {
   @apply relative overflow-hidden rounded-xl font-semibold transition-all duration-300;
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
@@ -155,7 +268,78 @@ body {
   transform: translateY(-2px);
 }
 
-/* Focus visible para accesibilidad */
+/* ───────── Scroll Reveal ───────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ───────── Animated border gradient ───────── */
+.border-glow-animated {
+  position: relative;
+}
+
+.border-glow-animated::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg), transparent 40%, rgba(0, 212, 255, 0.5) 50%, rgba(168, 85, 247, 0.4) 55%, transparent 65%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: border-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-rotate {
+  to { --angle: 360deg; }
+}
+
+/* ───────── Hover card lift ───────── */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15), 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ───────── Focus visible ───────── */
 *:focus-visible {
   @apply outline-2 outline-offset-2 outline-neon-blue rounded;
+}
+
+/* ───────── Scrollbar styling ───────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(19, 200, 236, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(19, 200, 236, 0.5);
 }

@@ -1,12 +1,19 @@
 ---
-// Fondo fa-brand: galaxia índigo/púrpura, campo de estrellas, grid neón 3D
+// Fondo fa-brand: galaxia índigo/púrpura, campo de estrellas, grid neón 3D, orbes animados, montañas Tron animadas
 ---
 <div class="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-  <!-- Gradiente base fa-brand: índigo oscuro → púrpura → azul -->
+  <!-- Gradiente base fa-brand -->
   <div
     class="absolute inset-0"
-    style="background: linear-gradient(180deg, #0f0a1f 0%, #1e1b4b 25%, #312e81 50%, #1e3a5f 75%, #0f172a 100%);"
+    style="background: linear-gradient(180deg, #050510 0%, #0f0a1f 15%, #1e1b4b 40%, #312e81 60%, #1e3a5f 80%, #0f172a 100%);"
   />
+
+  <!-- Orbes de color animados -->
+  <div class="orb orb--cyan" />
+  <div class="orb orb--purple" />
+  <div class="orb orb--pink" />
+
+  <!-- Radial overlays -->
   <div
     class="absolute inset-0 opacity-80"
     style="background: radial-gradient(ellipse 80% 50% at 50% 120%, rgba(59, 130, 246, 0.25) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 40%), radial-gradient(ellipse 50% 30% at 20% 20%, rgba(217, 70, 239, 0.1) 0%, transparent 35%);"
@@ -15,49 +22,245 @@
   <!-- Campo de estrellas (CSS) -->
   <div class="starfield" />
 
-  <!-- Grid Tron en toda la pantalla -->
-  <div class="tron-grid absolute inset-0 opacity-90" />
+  <!-- Grid Tron principal -->
+  <div class="tron-grid absolute inset-0" />
+
+  <!-- Líneas de energía horizontales animadas -->
+  <div class="energy-lines" />
 
   <!-- Grid neón 3D (suelo digital) -->
   <div class="grid-neon-floor" />
 
-  <!-- Montañas neón tipo Tron (siluetas azul–magenta) -->
-  <svg class="absolute bottom-0 left-0 w-full h-2/5 min-h-[280px] opacity-75" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+  <!-- ═══ Montañas neón Tron — ANIMADAS ═══ -->
+  <svg class="absolute bottom-0 left-0 w-full h-2/5 min-h-[280px]" viewBox="0 0 1200 400" preserveAspectRatio="none">
     <defs>
       <linearGradient id="fa-brand-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
-        <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.5" />
-        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.4" />
+        <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.7" />
+        <stop offset="50%" stop-color="#a855f7" stop-opacity="0.6" />
+        <stop offset="100%" stop-color="#ec4899" stop-opacity="0.5" />
+      </linearGradient>
+      <linearGradient id="fa-fill-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.06" />
+        <stop offset="100%" stop-color="#0f0a1f" stop-opacity="0" />
+      </linearGradient>
+      <linearGradient id="fa-light" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"  stop-color="#00f5ff" stop-opacity="0" />
+        <stop offset="44%" stop-color="#00f5ff" stop-opacity="0" />
+        <stop offset="49%" stop-color="#c0f0ff" stop-opacity="0.6" />
+        <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="51%" stop-color="#c0f0ff" stop-opacity="0.6" />
+        <stop offset="56%" stop-color="#00f5ff" stop-opacity="0" />
+        <stop offset="100%" stop-color="#00f5ff" stop-opacity="0" />
       </linearGradient>
       <filter id="glow-brand">
-        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-        <feMerge>
-          <feMergeNode in="coloredBlur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+        <feGaussianBlur stdDeviation="3" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+      <filter id="glow-strong">
+        <feGaussianBlur stdDeviation="5" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
       </filter>
     </defs>
-    <path d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1.2" filter="url(#glow-brand)" />
-    <path d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1" opacity="0.85" filter="url(#glow-brand)" />
-    <path d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z" fill="none" stroke="url(#fa-brand-grad)" stroke-width="0.8" opacity="0.7" filter="url(#glow-brand)" />
+
+    <!-- Capa 3: lejana -->
+    <path
+      d="M0,400 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380 L1200,400 Z"
+      class="bg-mtn-fill bg-mtn-fill--3" fill="url(#fa-fill-grad)"
+    />
+    <path
+      d="M0,385 L100,360 L250,380 L500,340 L700,370 L950,350 L1200,380"
+      class="bg-mtn bg-mtn--3" fill="none" stroke="url(#fa-brand-grad)" stroke-width="0.8" filter="url(#glow-brand)"
+    />
+
+    <!-- Capa 2: media -->
+    <path
+      d="M0,400 L0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340 L1200,400 Z"
+      class="bg-mtn-fill bg-mtn-fill--2" fill="url(#fa-fill-grad)"
+    />
+    <path
+      d="M0,320 L200,260 L400,320 L600,240 L800,300 L1000,260 L1200,340"
+      class="bg-mtn bg-mtn--2" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1.2" filter="url(#glow-brand)"
+    />
+
+    <!-- Capa 1: principal -->
+    <path
+      d="M0,400 L0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320 L1200,400 Z"
+      class="bg-mtn-fill bg-mtn-fill--1" fill="url(#fa-fill-grad)"
+    />
+    <path
+      d="M0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320"
+      class="bg-mtn bg-mtn--1" fill="none" stroke="url(#fa-brand-grad)" stroke-width="1.5" filter="url(#glow-strong)"
+    />
+
+    <!-- Pulso de luz sobre capa principal -->
+    <path
+      d="M0,280 L150,200 L300,280 L450,150 L600,250 L750,180 L900,300 L1050,220 L1200,320"
+      class="bg-mtn-light" fill="none" stroke="url(#fa-light)" stroke-width="3" filter="url(#glow-strong)"
+    />
+
+    <!-- Vértices en picos principales -->
+    <g class="bg-mtn-vertices">
+      <circle cx="450"  cy="150" r="2.5" fill="#00f5ff" class="bg-vtx" />
+      <circle cx="750"  cy="180" r="2.5" fill="#a855f7" class="bg-vtx" />
+      <circle cx="150"  cy="200" r="2"   fill="#00d4ff" class="bg-vtx" />
+      <circle cx="1050" cy="220" r="2"   fill="#ec4899" class="bg-vtx" />
+      <circle cx="600"  cy="240" r="1.8" fill="#a855f7" class="bg-vtx bg-vtx--mid" />
+      <circle cx="200"  cy="260" r="1.5" fill="#00d4ff" class="bg-vtx bg-vtx--mid" />
+      <circle cx="1000" cy="260" r="1.5" fill="#ec4899" class="bg-vtx bg-vtx--mid" />
+    </g>
+
+    <!-- Grid lines desde picos -->
+    <g class="bg-mtn-gridlines">
+      <line x1="450"  y1="150" x2="450"  y2="400" stroke="#00f5ff" stroke-width="0.4" class="bg-gl" />
+      <line x1="750"  y1="180" x2="750"  y2="400" stroke="#a855f7" stroke-width="0.35" class="bg-gl" />
+      <line x1="150"  y1="200" x2="150"  y2="400" stroke="#00d4ff" stroke-width="0.3" class="bg-gl" />
+      <line x1="1050" y1="220" x2="1050" y2="400" stroke="#ec4899" stroke-width="0.3" class="bg-gl" />
+    </g>
   </svg>
 
-  <!-- Partículas / estrellas (script) -->
+  <!-- Partículas / estrellas -->
   <div id="particles-container" class="absolute inset-0 pointer-events-none" />
+
+  <!-- Scan line sutil -->
+  <div class="scan-line" />
 </div>
+
+<style>
+  /*
+   * Mountain animation loop: 14s infinite
+   * 0-3%    → dark
+   * 3-24%   → draw (staggered layers)
+   * 24-34%  → vertices + gridlines appear
+   * 34-65%  → hold + breathe + light pulse travels
+   * 65-80%  → fade out
+   * 80-100% → dark pause
+   */
+
+  /* ── Mountain strokes ── */
+  .bg-mtn {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    opacity: 0;
+  }
+
+  .bg-mtn--3 { animation: bg-draw 14s ease-in-out infinite }
+  .bg-mtn--2 { animation: bg-draw 14s ease-in-out .5s infinite }
+  .bg-mtn--1 { animation: bg-draw-main 14s ease-in-out 1s infinite }
+
+  @keyframes bg-draw {
+    0%,3%  { stroke-dashoffset:3000; opacity:0 }
+    5%     { stroke-dashoffset:3000; opacity:.7 }
+    24%    { stroke-dashoffset:0; opacity:1 }
+    62%    { stroke-dashoffset:0; opacity:1 }
+    78%    { stroke-dashoffset:0; opacity:0 }
+    100%   { stroke-dashoffset:3000; opacity:0 }
+  }
+
+  @keyframes bg-draw-main {
+    0%,5%  { stroke-dashoffset:3000; opacity:0 }
+    8%     { stroke-dashoffset:3000; opacity:1 }
+    26%    { stroke-dashoffset:0; opacity:1 }
+    40%    { stroke-dashoffset:0; opacity:1 }
+    47%    { stroke-dashoffset:0; opacity:.65 }
+    54%    { stroke-dashoffset:0; opacity:1 }
+    62%    { stroke-dashoffset:0; opacity:1 }
+    78%    { stroke-dashoffset:0; opacity:0 }
+    100%   { stroke-dashoffset:3000; opacity:0 }
+  }
+
+  /* ── Fills ── */
+  .bg-mtn-fill { opacity:0 }
+  .bg-mtn-fill--1 { animation: bg-fl 14s ease-in-out 1.5s infinite }
+  .bg-mtn-fill--2 { animation: bg-fl 14s ease-in-out .8s infinite }
+  .bg-mtn-fill--3 { animation: bg-fl 14s ease-in-out .3s infinite }
+
+  @keyframes bg-fl {
+    0%,18% { opacity:0 }
+    28%    { opacity:1 }
+    62%    { opacity:1 }
+    78%    { opacity:0 }
+    100%   { opacity:0 }
+  }
+
+  /* ── Vertices ── */
+  .bg-vtx {
+    opacity:0;
+    animation: bg-vt 14s ease-in-out infinite;
+  }
+  .bg-vtx:nth-child(1) { animation-delay:1.8s }
+  .bg-vtx:nth-child(2) { animation-delay:2.0s }
+  .bg-vtx:nth-child(3) { animation-delay:1.5s }
+  .bg-vtx:nth-child(4) { animation-delay:2.3s }
+  .bg-vtx--mid:nth-child(5) { animation-delay:1.2s }
+  .bg-vtx--mid:nth-child(6) { animation-delay:1.0s }
+  .bg-vtx--mid:nth-child(7) { animation-delay:2.5s }
+
+  @keyframes bg-vt {
+    0%,16% { opacity:0; r:0 }
+    22%    { opacity:1; r:4.5 }
+    26%    { opacity:.85; r:2.5 }
+    38%    { opacity:1; r:3 }
+    48%    { opacity:.7; r:2 }
+    56%    { opacity:1; r:3 }
+    64%    { opacity:.8; r:2.5 }
+    76%    { opacity:0; r:0 }
+    100%   { opacity:0; r:0 }
+  }
+
+  /* ── Grid lines ── */
+  .bg-gl {
+    opacity:0;
+    stroke-dasharray:0 400;
+    animation: bg-gd 14s ease-in-out infinite;
+  }
+  .bg-gl:nth-child(1) { animation-delay:2.0s }
+  .bg-gl:nth-child(2) { animation-delay:2.2s }
+  .bg-gl:nth-child(3) { animation-delay:1.7s }
+  .bg-gl:nth-child(4) { animation-delay:2.5s }
+
+  @keyframes bg-gd {
+    0%,18% { opacity:0; stroke-dasharray:0 400 }
+    28%    { opacity:.1; stroke-dasharray:400 0 }
+    62%    { opacity:.07; stroke-dasharray:400 0 }
+    76%    { opacity:0; stroke-dasharray:400 0 }
+    100%   { opacity:0; stroke-dasharray:0 400 }
+  }
+
+  /* ── Light pulse ── */
+  .bg-mtn-light {
+    stroke-dasharray:180 2820;
+    stroke-dashoffset:3000;
+    opacity:0;
+    animation: bg-lt 14s linear infinite;
+  }
+
+  @keyframes bg-lt {
+    0%,26% { stroke-dashoffset:3000; opacity:0 }
+    28%    { opacity:.8 }
+    38%    { stroke-dashoffset:1500; opacity:1 }
+    48%    { stroke-dashoffset:0; opacity:.5 }
+    50%    { stroke-dashoffset:-180; opacity:0 }
+    55%    { stroke-dashoffset:3000; opacity:0 }
+    57%    { opacity:.6 }
+    65%    { stroke-dashoffset:1500; opacity:.8 }
+    73%    { stroke-dashoffset:0; opacity:.4 }
+    75%    { stroke-dashoffset:-180; opacity:0 }
+    100%   { opacity:0 }
+  }
+</style>
 
 <script>
   (function initParticles() {
     const container = document.getElementById('particles-container');
     if (!container) return;
-    const count = 120;
+    const count = 150;
     for (let i = 0; i < count; i++) {
       const p = document.createElement('div');
-      p.className = Math.random() > 0.5 ? 'particle' : 'particle particle--dim';
+      p.className = Math.random() > 0.4 ? 'particle' : 'particle particle--dim';
       p.style.left = Math.random() * 100 + '%';
       p.style.top = Math.random() * 100 + '%';
-      p.style.animationDelay = Math.random() * 4 + 's';
-      const size = 1 + Math.random() * 2;
+      p.style.animationDelay = Math.random() * 5 + 's';
+      const size = 1 + Math.random() * 2.5;
       p.style.width = size + 'px';
       p.style.height = size + 'px';
       container.appendChild(p);
