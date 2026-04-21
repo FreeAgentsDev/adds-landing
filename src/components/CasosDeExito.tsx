@@ -4,7 +4,7 @@ const testimonials = [
   {
     company: 'Valm Beauty',
     industry: 'Belleza y Cosmética',
-    quote: 'FreeAgents nos construyó un ecommerce que realmente representa nuestra marca. Desde el primer día entendieron nuestra visión y la convirtieron en una experiencia de compra que nuestros clientes aman.',
+    quote: 'Quedé muy satisfecha con el servicio para la creación de mi página web. Desde el inicio entendieron perfectamente lo que quería, respetaron cada detalle y lograron plasmarlo tal cual lo imaginaba. Además, cumplieron con los tiempos establecidos, lo cual para mí era clave. Sin duda, fue un proceso muy fluido y profesional.',
     what: 'Implementación de ecommerce',
     icon: 'storefront',
   },
