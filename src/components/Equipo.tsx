@@ -12,36 +12,49 @@ const team = [
     role: 'CEO',
     desc: 'Estrategia de negocio y visión de producto. Conecta la tecnología con los objetivos reales de cada cliente.',
     icon: 'strategy',
+    photo: '/team-photos/miguel.png',
   },
   {
     name: 'Juan David Gallego Ramírez',
     role: 'CTO',
     desc: 'Arquitectura técnica y liderazgo de desarrollo. Diseña los sistemas que hacen posible el Full Business Growth.',
     icon: 'terminal',
+    photo: '/team-photos/juanito.png',
   },
   {
-    name: 'Santiago Soler',
+    name: 'Santiago Soler Echeverri',
     role: 'Desarrollador',
     desc: 'Construcción de plataformas y automatizaciones. Convierte los diseños en software que funciona.',
     icon: 'code',
+    photo: '/team-photos/soler.png',
   },
   {
-    name: 'Brayan', // TODO: añadir apellido completo
+    name: 'Brayan Stiven Agudelo',
     role: 'Desarrollador',
     desc: 'Backend e integraciones. Conecta las piezas para que todo el ecosistema del cliente fluya sin fricción.',
     icon: 'database',
+    photo: null,
   },
   {
     name: 'Santiago Valencia Londoño',
     role: 'Desarrollador',
     desc: 'Frontend y experiencias de usuario. Se asegura de que cada interfaz sea rápida, clara y útil.',
     icon: 'devices',
+    photo: '/team-photos/valencia.png',
+  },
+  {
+    name: 'Jerónimo Mayorca Arias',
+    role: 'Desarrollador & Estratega de Ventas',
+    desc: 'Desarrollo y estrategia comercial. Traduce la tecnología en argumentos de venta que conectan con lo que el cliente realmente necesita.',
+    icon: 'trending_up',
+    photo: '/team-photos/mayorca.png',
   },
   {
     name: 'María José Herrada',
     role: 'Diseñadora',
     desc: 'UX/UI y marca. Le da identidad visual a cada proyecto y se asegura de que la experiencia conecte.',
     icon: 'palette',
+    photo: '/team-photos/majo.png',
   },
 ];
 
@@ -94,10 +107,18 @@ export default function Equipo() {
               transition={{ delay: i * 0.08 }}
               className="group card-hover glass p-8 rounded-2xl hover:border-primary/25 transition-all flex flex-col items-center text-center"
             >
-              {/* Avatar placeholder */}
-              <div className="size-24 rounded-full bg-gradient-to-br from-primary/20 via-neon-purple/15 to-neon-pink/10 border-2 border-primary/20 group-hover:border-primary/50 transition-all flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(19,200,236,0.1)] group-hover:shadow-[0_0_30px_rgba(19,200,236,0.2)]">
-                <span className="material-symbols-outlined text-primary/60 text-4xl">{member.icon}</span>
-              </div>
+              {member.photo ? (
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  loading="lazy"
+                  className="size-24 rounded-full object-cover border-2 border-primary/20 group-hover:border-primary/50 transition-all mb-5 shadow-[0_0_20px_rgba(19,200,236,0.1)] group-hover:shadow-[0_0_30px_rgba(19,200,236,0.2)]"
+                />
+              ) : (
+                <div className="size-24 rounded-full bg-gradient-to-br from-primary/20 via-neon-purple/15 to-neon-pink/10 border-2 border-primary/20 group-hover:border-primary/50 transition-all flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(19,200,236,0.1)] group-hover:shadow-[0_0_30px_rgba(19,200,236,0.2)]">
+                  <span className="material-symbols-outlined text-primary/60 text-4xl">{member.icon}</span>
+                </div>
+              )}
 
               <h4 className="text-white font-bold text-lg">{member.name}</h4>
               <p className="text-primary text-sm font-semibold mb-3">{member.role}</p>
