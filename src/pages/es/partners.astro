@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import Background from '../../components/Background.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PartnersPage from '../../components/sections/PartnersPage.astro';
+import { getDictionary } from '../../content';
+
+const locale = 'es' as const;
+const dict = getDictionary(locale);
+---
+<Layout locale={locale} title={dict.seo.partners.title} description={dict.seo.partners.description}>
+  <Background />
+  <Header locale={locale} dict={dict} homeAnchors={false} />
+  <main>
+    <PartnersPage locale={locale} dict={dict} />
+  </main>
+  <Footer locale={locale} dict={dict} />
+</Layout>

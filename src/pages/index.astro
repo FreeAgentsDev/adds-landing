@@ -1,30 +1,50 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
-import Background from '../components/Background.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Hero from '../components/Hero.astro';
-import Problema from '../components/Problema';
-import FullBusinessGrowth from '../components/FullBusinessGrowth';
-import CasosDeExito from '../components/CasosDeExito';
-import Equipo from '../components/Equipo';
-import ComoTrabajamos from '../components/ComoTrabajamos';
-import FAQ from '../components/FAQ';
-import Contacto from '../components/Contacto';
+/**
+ * Root trampoline for a static Astro deploy.
+ * /en and /es are the real indexable sites — never redirect those here.
+ * No middleware. Client-side locale preference → navigator.language → /en.
+ */
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://freeagentsdev.com';
 ---
-<Layout>
-  <Background />
-  <Header />
-  <main>
-    <Hero />
-    <Problema client:load />
-    <FullBusinessGrowth client:load />
-    <CasosDeExito client:load />
-    <Equipo client:load />
-    <ComoTrabajamos client:load />
-    <FAQ client:load />
-    <Contacto client:load />
-  </main>
-  <Footer />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>FreeAgents</title>
+    <link rel="canonical" href={`${site}/en`} />
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('fa_lang');
+          var cookieMatch = document.cookie.match(/(?:^|; )fa_lang=([^;]+)/);
+          var cookie = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+          var preferred = stored || cookie;
+          if (preferred === 'es' || preferred === 'en') {
+            window.location.replace('/' + preferred + window.location.search + window.location.hash);
+            return;
+          }
+          var nav = (navigator.language || 'en').toLowerCase();
+          var locale = nav.indexOf('es') === 0 ? 'es' : 'en';
+          window.location.replace('/' + locale + window.location.search + window.location.hash);
+        } catch (e) {
+          window.location.replace('/en');
+        }
+      })();
+    </script>
+  </head>
+  <body style="margin:0;background:#0f0a1f;color:#e2e8f0;font-family:system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;">
+    <main style="text-align:center;padding:2rem;">
+      <p style="margin-bottom:1rem;">FreeAgents</p>
+      <p style="margin-bottom:1.5rem;color:#94a3b8;">Choose your language / Elige tu idioma</p>
+      <p>
+        <a href="/en" style="color:#13c8ec;margin:0 0.75rem;font-weight:700;">English</a>
+        <a href="/es" style="color:#13c8ec;margin:0 0.75rem;font-weight:700;">Español</a>
+      </p>
+      <noscript>
+        <p style="margin-top:1rem;"><a href="/en">Continue in English</a></p>
+      </noscript>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+---
+import type { Locale } from '../i18n/config';
+import { locales, localeLabels } from '../i18n/config';
+import { switchLocalePath } from '../i18n/utils';
+import type { Dictionary } from '../content';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const pathname = Astro.url.pathname;
+const search = Astro.url.search;
+---
+<nav class="flex items-center gap-1" aria-label={dict.language.label}>
+  {locales.map((l) => {
+    const href = `${switchLocalePath(pathname, l)}${search}`;
+    const active = l === locale;
+    return (
+      <a
+        href={href}
+        hreflang={l}
+        lang={l}
+        aria-current={active ? 'true' : undefined}
+        class:list={[
+          'px-2.5 py-1 rounded-md text-xs font-bold tracking-wide transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+          active
+            ? 'bg-primary/15 text-primary'
+            : 'text-slate-400 hover:text-white hover:bg-white/5',
+        ]}
+        data-lang-switch={l}
+      >
+        <span class="sr-only">{l === 'en' ? dict.language.en : dict.language.es}</span>
+        <span aria-hidden="true">{localeLabels[l]}</span>
+      </a>
+    );
+  })}
+</nav>
+
+<script>
+  document.querySelectorAll('[data-lang-switch]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const lang = (el as HTMLElement).dataset.langSwitch;
+      if (!lang) return;
+      try {
+        localStorage.setItem('fa_lang', lang);
+        document.cookie = `fa_lang=${lang};path=/;max-age=31536000;samesite=lax`;
+      } catch {
+        /* ignore */
+      }
+    });
+  });
+</script>

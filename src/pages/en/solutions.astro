@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+import Background from '../../components/Background.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Solutions from '../../components/sections/Solutions.astro';
+import Problems from '../../components/sections/Problems.astro';
+import FinalCta from '../../components/sections/FinalCta.astro';
+import { getDictionary } from '../../content';
+import { localePath } from '../../i18n/utils';
+
+const locale = 'en' as const;
+const dict = getDictionary(locale);
+---
+<Layout locale={locale} title={dict.seo.solutions.title} description={dict.seo.solutions.description}>
+  <Background />
+  <Header locale={locale} dict={dict} homeAnchors={false} />
+  <main class="pt-16">
+    <div class="max-w-6xl mx-auto px-4 pt-12 pb-4 text-center">
+      <a href={localePath(locale, 'home')} class="text-primary text-sm font-semibold hover:underline">{dict.nav.home}</a>
+    </div>
+    <Solutions dict={dict} />
+    <Problems dict={dict} />
+    <FinalCta locale={locale} dict={dict} />
+  </main>
+  <Footer locale={locale} dict={dict} />
+</Layout>
