@@ -1,42 +1,60 @@
 ---
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/utils';
+import type { Dictionary } from '../content';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  homeAnchors?: boolean;
+}
+
+const { locale, dict, homeAnchors = true } = Astro.props;
+const home = localePath(locale, 'home');
+
 const navLinks = [
-  { href: '#full-business-growth', label: 'Full Business Growth' },
-  { href: '#casos', label: 'Clientes' },
-  { href: '#equipo', label: 'Equipo' },
-  { href: '#proceso', label: 'Proceso' },
-  { href: '#faq', label: 'FAQ' },
+  { href: homeAnchors ? '#solutions' : localePath(locale, 'solutions'), label: dict.nav.solutions },
+  { href: homeAnchors ? '#cases' : localePath(locale, 'caseStudies'), label: dict.nav.caseStudies },
+  { href: homeAnchors ? '#process' : `${home}#process`, label: dict.nav.process },
+  { href: localePath(locale, 'partners'), label: dict.nav.partners },
+  { href: homeAnchors ? '#contact' : `${home}#contact`, label: dict.nav.contact },
 ];
 ---
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="mx-auto max-w-7xl px-4">
     <div class="flex items-center justify-between h-16 md:h-18">
-      <a href="#" class="flex items-center gap-3 group" aria-label="FreeAgents inicio">
+      <a href={home} class="flex items-center gap-3 group" aria-label={`FreeAgents ${dict.nav.home}`}>
         <img src="/fa-logo.png" alt="FreeAgents" class="size-9 shrink-0 rounded-full object-cover ring-2 ring-primary/20 group-hover:ring-primary/50 transition-all" width="36" height="36" />
-        <h2 class="text-white text-lg font-black tracking-tight">Free<span class="text-primary">Agents</span></h2>
+        <span class="text-white text-lg font-black tracking-tight">Free<span class="text-primary">Agents</span></span>
       </a>
-      <nav class="hidden md:flex gap-6 items-center">
+      <nav class="hidden lg:flex gap-5 items-center" aria-label="Primary">
         {navLinks.map((link) => (
           <a href={link.href} class="text-slate-400 hover:text-white transition-colors text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary hover:after:w-full after:transition-all">
             {link.label}
           </a>
         ))}
-        <a href="#contacto" class="bg-primary text-background-dark px-5 py-2 rounded-lg font-bold text-sm hover:shadow-[0_0_15px_rgba(19,200,236,0.4)] hover:brightness-110 transition-all">
-          Agendar
+        <LanguageSwitcher locale={locale} dict={dict} />
+        <a href={homeAnchors ? '#contact' : `${home}#contact`} class="bg-primary text-background-dark px-5 py-2 rounded-lg font-bold text-sm hover:shadow-[0_0_15px_rgba(19,200,236,0.4)] hover:brightness-110 transition-all">
+          {dict.nav.cta}
         </a>
       </nav>
-      <button
-        type="button"
-        id="menu-toggle"
-        class="md:hidden p-2 text-primary hover:bg-white/5 rounded-lg transition-colors"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Abrir menú"
-      >
-        <span class="material-symbols-outlined">menu</span>
-      </button>
+      <div class="flex items-center gap-2 lg:hidden">
+        <LanguageSwitcher locale={locale} dict={dict} />
+        <button
+          type="button"
+          id="menu-toggle"
+          class="p-2 text-primary hover:bg-white/5 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label={dict.nav.openMenu}
+        >
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-4 py-4 bg-background-dark/95 backdrop-blur-xl" aria-label="Menú móvil">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/5 px-4 py-4 bg-background-dark/95 backdrop-blur-xl" aria-label="Mobile">
     <ul class="flex flex-col gap-1">
       {navLinks.map((link) => (
         <li>
@@ -46,7 +64,7 @@ const navLinks = [
         </li>
       ))}
       <li class="mt-2">
-        <a href="#contacto" class="block py-3 px-3 rounded-lg bg-primary/10 text-primary font-bold text-center mobile-nav-link">Agendar reunión</a>
+        <a href={homeAnchors ? '#contact' : `${home}#contact`} class="block py-3 px-3 rounded-lg bg-primary/10 text-primary font-bold text-center mobile-nav-link">{dict.nav.cta}</a>
       </li>
     </ul>
   </div>
@@ -70,14 +88,12 @@ const navLinks = [
 
   links.forEach((link) => link.addEventListener('click', closeMenu));
 
-  // Header background on scroll
   window.addEventListener('scroll', () => {
-    if (header) {
-      if (window.scrollY > 50) {
-        header.classList.add('bg-background-dark/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-      } else {
-        header.classList.remove('bg-background-dark/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-      }
+    if (!header) return;
+    if (window.scrollY > 50) {
+      header.classList.add('bg-background-dark/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    } else {
+      header.classList.remove('bg-background-dark/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
     }
   }, { passive: true });
 </script>

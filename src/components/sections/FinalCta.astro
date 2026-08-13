@@ -1,0 +1,29 @@
+---
+import type { Dictionary } from '../../content';
+import type { Locale } from '../../i18n/config';
+import { localePath } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const contactHref = `${localePath(locale, 'home')}#contact`;
+---
+<section id="final-cta" class="py-20 px-4" aria-labelledby="final-cta-heading">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="reveal rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent p-8 sm:p-10">
+      <h2 id="final-cta-heading" class="text-white text-2xl sm:text-3xl font-black mb-6 leading-tight">{dict.finalCta.clientTitle}</h2>
+      <a href={contactHref} class="inline-flex bg-primary text-background-dark px-6 py-3 rounded-xl font-bold hover:brightness-110 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        {dict.finalCta.clientCta}
+      </a>
+    </div>
+    <div class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
+      <h2 class="text-white text-2xl sm:text-3xl font-black mb-6 leading-tight">{dict.finalCta.partnerTitle}</h2>
+      <a href={localePath(locale, 'partners')} class="inline-flex border border-slate-500 text-slate-200 px-6 py-3 rounded-xl font-bold hover:border-primary/40 hover:bg-white/5 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        {dict.finalCta.partnerCta}
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+import Background from './Background.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Hero from './Hero.astro';
+import Trust from './sections/Trust.astro';
+import Problems from './sections/Problems.astro';
+import Solutions from './sections/Solutions.astro';
+import Process from './sections/Process.astro';
+import CaseStudies from './sections/CaseStudies.astro';
+import Why from './sections/Why.astro';
+import Team from './sections/Team.astro';
+import Tech from './sections/Tech.astro';
+import PartnersSection from './sections/PartnersSection.astro';
+import FinalCta from './sections/FinalCta.astro';
+import FAQ from './FAQ';
+import Contact from './Contact';
+import type { Locale } from '../i18n/config';
+import { getDictionary } from '../content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const dict = getDictionary(locale);
+---
+<Layout locale={locale} title={dict.seo.home.title} description={dict.seo.home.description}>
+  <Background />
+  <Header locale={locale} dict={dict} homeAnchors={true} />
+  <main>
+    <Hero dict={dict} />
+    <Trust locale={locale} dict={dict} />
+    <Problems dict={dict} />
+    <Solutions dict={dict} />
+    <Process dict={dict} />
+    <CaseStudies dict={dict} />
+    <Why dict={dict} />
+    <Team dict={dict} />
+    <Tech dict={dict} />
+    <PartnersSection locale={locale} dict={dict} />
+    <FinalCta locale={locale} dict={dict} />
+    <FAQ client:visible dict={dict} />
+    <Contact client:visible dict={dict} />
+  </main>
+  <Footer locale={locale} dict={dict} />
+</Layout>

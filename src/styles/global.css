@@ -28,6 +28,27 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .orb,
+  .starfield,
+  .energy-lines::before,
+  .energy-lines::after,
+  .scan-line,
+  .border-glow-animated::before {
+    animation: none !important;
+  }
+}
+
 html.dark,
 body {
   @apply text-white antialiased;

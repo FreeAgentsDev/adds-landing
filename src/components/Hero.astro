@@ -1,10 +1,15 @@
 ---
----
-<section id="hero" class="relative overflow-hidden pt-20 pb-28 px-4 min-h-[85vh] flex items-center">
-  <!-- Hero-specific glow orb -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-primary/15 via-neon-purple/10 to-transparent blur-[100px] pointer-events-none animate-glow-pulse" />
+import type { Dictionary } from '../content';
 
-  <!-- Tron Grid Floor -->
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+const { hero } = dict;
+---
+<section id="hero" class="relative overflow-hidden pt-24 pb-24 px-4 min-h-[85vh] flex items-center">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-primary/12 via-neon-purple/8 to-transparent pointer-events-none" aria-hidden="true" />
   <div class="hero-grid" aria-hidden="true">
     <div class="hero-grid-inner" />
   </div>
@@ -13,45 +18,38 @@
   <div class="max-w-7xl mx-auto w-full relative z-10">
     <div class="flex flex-col items-center text-center">
       <div class="flex flex-col gap-7 max-w-3xl">
-        <!-- Badge -->
         <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 w-fit mx-auto backdrop-blur-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+          <span class="relative flex h-2 w-2" aria-hidden="true">
             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
-          <span class="text-primary text-xs font-bold uppercase tracking-widest">Full Business Growth</span>
+          <span class="text-primary text-xs font-bold uppercase tracking-widest">{hero.badge}</span>
         </div>
 
-        <!-- Headline -->
         <h1 class="reveal reveal-delay-1 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
-          Tu negocio merece tecnología que
-          <span class="text-gradient"> lo haga crecer.</span>
+          {hero.headline}
         </h1>
 
-        <!-- Subtitle -->
         <p class="reveal reveal-delay-2 text-slate-300 text-lg sm:text-xl md:text-2xl leading-relaxed">
-          No entregamos proyectos y nos vamos. Nos metemos en tu negocio, entendemos tu operación y construimos lo que necesitas para escalar.
+          {hero.subhead}
         </p>
 
-        <!-- CTAs -->
         <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href="#contacto"
-            class="group relative bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-2 shadow-[0_0_25px_rgba(19,200,236,0.3)] hover:shadow-[0_0_40px_rgba(19,200,236,0.5)] hover:scale-[1.02]"
+            href="#contact"
+            class="group relative bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-2 shadow-[0_0_25px_rgba(19,200,236,0.3)] hover:shadow-[0_0_40px_rgba(19,200,236,0.5)] hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            <span class="material-symbols-outlined text-lg transition-transform group-hover:-translate-y-0.5">calendar_today</span>
-            Agendar reunión
+            {hero.primaryCta}
           </a>
           <a
-            href="#full-business-growth"
-            class="group border border-slate-600 text-slate-300 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/5 hover:border-primary/40 transition-all inline-flex items-center gap-2"
+            href="#solutions"
+            class="group border border-slate-600 text-slate-300 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/5 hover:border-primary/40 transition-all inline-flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-0.5">arrow_forward</span>
-            Conoce cómo lo hacemos
+            {hero.secondaryCta}
+            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
           </a>
         </div>
 
-        <p class="reveal reveal-delay-3 text-slate-500 text-sm tracking-wide">Sin compromiso · 30 min · 100% gratis</p>
+        <p class="reveal reveal-delay-3 text-slate-500 text-sm tracking-wide">{hero.note}</p>
       </div>
     </div>
   </div>
@@ -77,10 +75,18 @@
     transform: rotateX(60deg);
     transform-origin: center top;
     background-image:
-      linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+      linear-gradient(rgba(0, 212, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.12) 1px, transparent 1px);
     background-size: 60px 60px;
-    animation: grid-scroll 4s linear infinite;
+  }
+
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .hero-grid-inner {
+      animation: grid-scroll 8s linear infinite;
+    }
+    .hero-horizon {
+      animation: horizon-pulse 6s ease-in-out infinite;
+    }
   }
 
   @keyframes grid-scroll {
@@ -96,12 +102,24 @@
     height: 2px;
     background: linear-gradient(90deg, transparent 5%, rgba(0, 212, 255, 0.3) 30%, rgba(168, 85, 247, 0.25) 50%, rgba(0, 212, 255, 0.3) 70%, transparent 95%);
     box-shadow: 0 0 30px rgba(0, 212, 255, 0.2), 0 0 60px rgba(168, 85, 247, 0.1);
-    animation: horizon-pulse 4s ease-in-out infinite;
     pointer-events: none;
+    opacity: 0.75;
   }
 
   @keyframes horizon-pulse {
-    0%, 100% { opacity: 0.6; }
+    0%, 100% { opacity: 0.55; }
     50%      { opacity: 1; }
+  }
+
+  html.fa-paused .hero-grid-inner,
+  html.fa-paused .hero-horizon {
+    animation-play-state: paused !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-grid-inner,
+    .hero-horizon {
+      animation: none !important;
+    }
   }
 </style>

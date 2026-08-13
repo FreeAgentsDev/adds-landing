@@ -1,5 +1,25 @@
 ---
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/utils';
+import type { Dictionary } from '../content';
+import { CONTACT } from '../content/shared';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
 const currentYear = new Date().getFullYear();
+const home = localePath(locale, 'home');
+
+const navLinks = [
+  { href: localePath(locale, 'solutions'), label: dict.nav.solutions },
+  { href: localePath(locale, 'caseStudies'), label: dict.nav.caseStudies },
+  { href: `${home}#process`, label: dict.nav.process },
+  { href: localePath(locale, 'partners'), label: dict.nav.partners },
+  { href: `${home}#contact`, label: dict.nav.contact },
+];
 ---
 <footer class="bg-background-dark/90 backdrop-blur-sm pt-20 pb-10 border-t border-slate-800 px-4">
   <div class="max-w-7xl mx-auto">
@@ -7,50 +27,42 @@ const currentYear = new Date().getFullYear();
       <div class="col-span-1 md:col-span-2">
         <div class="flex items-center gap-3 mb-6">
           <img src="/fa-logo.png" alt="FreeAgents" class="size-8 shrink-0 rounded-full object-cover" width="32" height="32" />
-          <h2 class="text-white text-xl font-black tracking-tight">FreeAgents</h2>
+          <span class="text-white text-xl font-black tracking-tight">FreeAgents</span>
         </div>
-        <p class="text-slate-500 max-w-xs mb-6">
-          El aliado tecnológico de las empresas que no se conforman. Software para el crecimiento real.
-        </p>
+        <p class="text-slate-500 max-w-xs mb-6">{dict.footer.tagline}</p>
       </div>
       <div>
-        <h6 class="text-white font-bold mb-6">Navegación</h6>
+        <h2 class="text-white font-bold mb-6 text-base">{dict.footer.navTitle}</h2>
         <ul class="space-y-4 text-slate-500">
-          <li><a href="#full-business-growth" class="hover:text-primary transition-colors">Full Business Growth</a></li>
-          <li><a href="#casos" class="hover:text-primary transition-colors">Clientes</a></li>
-          <li><a href="#equipo" class="hover:text-primary transition-colors">Equipo</a></li>
-          <li><a href="#proceso" class="hover:text-primary transition-colors">Proceso</a></li>
-          <li><a href="#contacto" class="hover:text-primary transition-colors">Contacto</a></li>
+          {navLinks.map((link) => (
+            <li><a href={link.href} class="hover:text-primary transition-colors">{link.label}</a></li>
+          ))}
         </ul>
       </div>
       <div>
-        <h6 class="text-white font-bold mb-6">Contacto</h6>
+        <h2 class="text-white font-bold mb-6 text-base">{dict.footer.contactTitle}</h2>
         <ul class="space-y-4 text-slate-500">
           <li class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">mail</span>
-            <a href="mailto:freeagentsdev@gmail.com" class="hover:text-primary transition-colors">freeagentsdev@gmail.com</a>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">mail</span>
+            <a href={`mailto:${CONTACT.email}`} class="hover:text-primary transition-colors">{CONTACT.email}</a>
           </li>
           <li class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">call</span>
-            <a href="https://wa.me/573004940576" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">+57 300 494 0576</a>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">call</span>
+            <a href={`https://wa.me/${CONTACT.whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">{CONTACT.whatsappDisplay}</a>
           </li>
           <li class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">photo_camera</span>
-            <a href="https://www.instagram.com/freeagentsdev/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Instagram</a>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">photo_camera</span>
+            <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Instagram</a>
           </li>
           <li class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-sm">work</span>
-            <a href="https://www.linkedin.com/company/freeagentsdev/" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">LinkedIn</a>
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">work</span>
+            <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">LinkedIn</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-sm">
-      <p>© {currentYear} FreeAgents. Todos los derechos reservados.</p>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-primary transition-colors">Privacidad</a>
-        <a href="#" class="hover:text-primary transition-colors">Términos</a>
-      </div>
+      <p>© {currentYear} FreeAgents. {dict.footer.rights}</p>
     </div>
   </div>
 </footer>

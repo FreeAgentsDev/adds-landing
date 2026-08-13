@@ -1,0 +1,64 @@
+---
+import type { Dictionary } from '../../content';
+
+interface Props {
+  dict: Dictionary;
+  detailed?: boolean;
+}
+
+const { dict, detailed = true } = Astro.props;
+const L = dict.cases.labels;
+---
+<section id="cases" class="py-24 px-4" aria-labelledby="cases-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 max-w-3xl mx-auto reveal">
+      <p class="text-primary font-bold tracking-widest uppercase text-sm mb-3">{dict.cases.eyebrow}</p>
+      <h2 id="cases-heading" class="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight">{dict.cases.headline}</h2>
+      <p class="text-slate-400 mt-4 text-lg">{dict.cases.subhead}</p>
+    </div>
+    <div class="space-y-8">
+      {dict.cases.items.map((c) => (
+        <article id={c.id} class="reveal scroll-mt-24 rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">{c.icon}</span>
+            <div>
+              <h3 class="text-white text-2xl font-black">{c.client}</h3>
+              <p class="text-slate-500 text-sm">{L.industry}: {c.industry}</p>
+            </div>
+          </div>
+          {detailed ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-primary text-xs font-bold uppercase tracking-wider mb-2">{L.challenge}</h4>
+                <p class="text-slate-300 text-sm leading-relaxed mb-5">{c.challenge}</p>
+                <h4 class="text-primary text-xs font-bold uppercase tracking-wider mb-2">{L.solution}</h4>
+                <p class="text-slate-300 text-sm leading-relaxed">{c.solution}</p>
+              </div>
+              <div>
+                <h4 class="text-primary text-xs font-bold uppercase tracking-wider mb-2">{L.technology}</h4>
+                <ul class="flex flex-wrap gap-2 mb-5">
+                  {c.technology.map((t) => (
+                    <li class="px-3 py-1 rounded-full border border-white/10 text-xs text-slate-300">{t}</li>
+                  ))}
+                </ul>
+                <h4 class="text-primary text-xs font-bold uppercase tracking-wider mb-2">{L.development}</h4>
+                <p class="text-slate-300 text-sm mb-5">{c.development}</p>
+                <h4 class="text-primary text-xs font-bold uppercase tracking-wider mb-2">{L.outcomes}</h4>
+                <ul class="space-y-2">
+                  {c.outcomes.map((o) => (
+                    <li class="flex items-start gap-2 text-slate-300 text-sm">
+                      <span class="material-symbols-outlined text-primary text-base mt-0.5" aria-hidden="true">check_circle</span>
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <p class="text-slate-400 text-sm">{c.solution}</p>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

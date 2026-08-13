@@ -1,0 +1,75 @@
+---
+import type { Dictionary } from '../../content';
+import type { Locale } from '../../i18n/config';
+import { localePath } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const p = dict.partnersSection;
+const partnersUrl = localePath(locale, 'partners');
+---
+<section id="partners" class="py-24 px-4" aria-labelledby="partners-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 max-w-3xl mx-auto reveal">
+      <p class="text-primary font-bold tracking-widest uppercase text-sm mb-3">{p.eyebrow}</p>
+      <h2 id="partners-heading" class="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight">{p.headline}</h2>
+      <p class="text-slate-400 mt-4 text-lg">{p.subhead}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+      <div class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-7">
+        <h3 class="text-white font-bold text-lg mb-4">{p.youBringTitle}</h3>
+        <ul class="space-y-3">
+          {p.youBring.map((item) => (
+            <li class="flex items-center gap-2 text-slate-300 text-sm">
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">arrow_forward</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal rounded-2xl border border-primary/20 bg-primary/5 p-7">
+        <h3 class="text-white font-bold text-lg mb-4">{p.weBringTitle}</h3>
+        <ul class="space-y-3">
+          {p.weBring.map((item) => (
+            <li class="flex items-center gap-2 text-slate-300 text-sm">
+              <span class="material-symbols-outlined text-primary text-base" aria-hidden="true">check</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="reveal mb-10">
+      <h3 class="text-white font-bold text-center mb-6">{p.flowTitle}</h3>
+      <ol class="flex flex-col sm:flex-row sm:flex-wrap justify-center items-stretch gap-3">
+        {p.flow.map((step, i) => (
+          <li class="flex items-center gap-3">
+            <div class="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 min-w-[140px] text-center">
+              <p class="text-primary text-[10px] font-bold tracking-widest uppercase">{step.actor}</p>
+              <p class="text-white text-sm font-semibold mt-1">{step.step}</p>
+            </div>
+            {i < p.flow.length - 1 && (
+              <span class="hidden sm:inline material-symbols-outlined text-slate-600" aria-hidden="true">south</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <p class="text-center text-slate-500 text-sm mb-8">{p.commission}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href={`${partnersUrl}#start`} class="bg-primary text-background-dark px-8 py-4 rounded-xl font-bold text-center hover:brightness-110 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        {p.primaryCta}
+      </a>
+      <a href={partnersUrl} class="border border-slate-600 text-slate-300 px-8 py-4 rounded-xl font-bold text-center hover:border-primary/40 hover:bg-white/5 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        {p.secondaryCta}
+      </a>
+    </div>
+  </div>
+</section>

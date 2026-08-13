@@ -1,0 +1,42 @@
+---
+import type { Dictionary } from '../../content';
+import type { Locale } from '../../i18n/config';
+import { localePath } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const cases = dict.cases.items;
+---
+<section id="trust" class="py-16 px-4 border-y border-white/5 bg-black/20" aria-labelledby="trust-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10 reveal">
+      <p class="text-primary font-bold tracking-widest uppercase text-sm mb-3">{dict.trust.eyebrow}</p>
+      <h2 id="trust-heading" class="text-white text-2xl sm:text-3xl font-black">{dict.trust.headline}</h2>
+      <p class="text-slate-400 mt-3">{dict.trust.subhead}</p>
+    </div>
+    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {cases.map((c) => (
+        <li>
+          <a
+            href={`${localePath(locale, 'caseStudies')}#${c.id}`}
+            class="card-hover block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-primary/30 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            <div class="flex items-center gap-3 mb-3">
+              <span class="material-symbols-outlined text-primary" aria-hidden="true">{c.icon}</span>
+              <span class="text-white font-bold">{c.client}</span>
+            </div>
+            <p class="text-slate-500 text-sm mb-4">{c.industry}</p>
+            <span class="text-primary text-sm font-semibold inline-flex items-center gap-1">
+              {dict.trust.cta}
+              <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

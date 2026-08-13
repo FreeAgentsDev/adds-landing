@@ -1,0 +1,29 @@
+---
+import type { Dictionary } from '../../content';
+
+interface Props {
+  dict: Dictionary;
+}
+
+const { dict } = Astro.props;
+---
+<section id="problems" class="py-24 px-4" aria-labelledby="problems-heading">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 max-w-3xl mx-auto reveal">
+      <p class="text-primary font-bold tracking-widest uppercase text-sm mb-3">{dict.problems.eyebrow}</p>
+      <h2 id="problems-heading" class="text-white text-3xl sm:text-4xl md:text-5xl font-black leading-tight">{dict.problems.headline}</h2>
+      <p class="text-slate-400 mt-4 text-lg">{dict.problems.subhead}</p>
+    </div>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {dict.problems.items.map((item) => (
+        <li class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-7">
+          <div class="size-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+            <span class="material-symbols-outlined text-primary" aria-hidden="true">{item.icon}</span>
+          </div>
+          <h3 class="text-white text-xl font-bold mb-2">{item.title}</h3>
+          <p class="text-slate-400 leading-relaxed">{item.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
