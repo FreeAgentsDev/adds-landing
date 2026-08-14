@@ -1,0 +1,12 @@
+# Coolify / Nixpacks: build static Astro, then serve production preview (not `astro dev`).
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npx astro preview --host 0.0.0.0 --port ${PORT:-4321}"
