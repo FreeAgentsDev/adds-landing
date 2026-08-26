@@ -15,6 +15,7 @@ export type Dictionary = {
     partners: string;
     contact: string;
     cta: string;
+    login: string;
     openMenu: string;
     closeMenu: string;
   };
@@ -25,6 +26,7 @@ export type Dictionary = {
     primaryCta: string;
     secondaryCta: string;
     note: string;
+    localCta: string;
   };
   trust: {
     eyebrow: string;

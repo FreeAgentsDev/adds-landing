@@ -1,5 +1,6 @@
 ---
 import type { Dictionary } from '../content';
+import { clientsAppUrl } from '../lib/clients-app';
 
 interface Props {
   dict: Dictionary;
@@ -50,6 +51,14 @@ const { hero } = dict;
         </div>
 
         <p class="reveal reveal-delay-3 text-slate-500 text-sm tracking-wide">{hero.note}</p>
+
+        <a
+          href={clientsAppUrl('/catalogo')}
+          class="reveal reveal-delay-3 group inline-flex items-center gap-2 mx-auto text-sm font-semibold text-neon-purple hover:text-primary transition-colors"
+        >
+          {hero.localCta}
+          <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
+        </a>
       </div>
     </div>
   </div>

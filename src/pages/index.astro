@@ -1,8 +1,8 @@
 ---
 /**
- * Root trampoline for a static Astro deploy.
- * /en and /es are the real indexable sites — never redirect those here.
- * No middleware. Client-side locale preference → navigator.language → /en.
+ * Locale trampoline at "/".
+ * Real sites are /en and /es. Keep this page branded: Astro's default
+ * redirect HTML is an unstyled "Redirecting from / to …" document.
  */
 const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://freeagentsdev.com';
 ---
@@ -12,39 +12,156 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://freeagentsdev
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0f0a1f" />
     <title>FreeAgents</title>
+    <link rel="icon" type="image/png" href="/fa-logo.png" />
     <link rel="canonical" href={`${site}/en`} />
-    <script is:inline>
-      (function () {
-        try {
-          var stored = localStorage.getItem('fa_lang');
-          var cookieMatch = document.cookie.match(/(?:^|; )fa_lang=([^;]+)/);
-          var cookie = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
-          var preferred = stored || cookie;
-          if (preferred === 'es' || preferred === 'en') {
-            window.location.replace('/' + preferred + window.location.search + window.location.hash);
-            return;
-          }
-          var nav = (navigator.language || 'en').toLowerCase();
-          var locale = nav.indexOf('es') === 0 ? 'es' : 'en';
-          window.location.replace('/' + locale + window.location.search + window.location.hash);
-        } catch (e) {
-          window.location.replace('/en');
-        }
-      })();
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: #0f0a1f;
+        color: #f8fafc;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .glow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 70% 50% at 50% -10%, rgba(19, 200, 236, 0.16), transparent 60%),
+          radial-gradient(ellipse 40% 30% at 100% 0%, rgba(168, 85, 247, 0.12), transparent 55%);
+      }
+      main {
+        position: relative;
+        z-index: 1;
+        width: min(28rem, calc(100% - 2rem));
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+      img {
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        object-fit: cover;
+        box-shadow: 0 0 0 2px rgba(19, 200, 236, 0.25);
+      }
+      h1 {
+        margin: 1.25rem 0 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      h1 span { color: #13c8ec; }
+      p {
+        margin: 0.75rem 0 0;
+        color: #94a3b8;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .actions {
+        margin-top: 1.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 8.5rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      }
+      a.primary {
+        background: #13c8ec;
+        color: #0f0a1f;
+        box-shadow: 0 0 24px rgba(19, 200, 236, 0.3);
+      }
+      a.primary:hover { transform: translateY(-1px); }
+      a.ghost {
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #e2e8f0;
+      }
+      a.ghost:hover { border-color: rgba(19, 200, 236, 0.45); background: rgba(255, 255, 255, 0.04); }
+      .hint {
+        margin-top: 1.25rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        color: #64748b;
+      }
+    </style>
   </head>
-  <body style="margin:0;background:#0f0a1f;color:#e2e8f0;font-family:system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;">
-    <main style="text-align:center;padding:2rem;">
-      <p style="margin-bottom:1rem;">FreeAgents</p>
-      <p style="margin-bottom:1.5rem;color:#94a3b8;">Choose your language / Elige tu idioma</p>
-      <p>
-        <a href="/en" style="color:#13c8ec;margin:0 0.75rem;font-weight:700;">English</a>
-        <a href="/es" style="color:#13c8ec;margin:0 0.75rem;font-weight:700;">Español</a>
-      </p>
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+    <main>
+      <img src="/fa-logo.png" alt="FreeAgents" width="56" height="56" />
+      <h1>Free<span>Agents</span></h1>
+      <p>Choose your language / Elige tu idioma</p>
+      <div class="actions">
+        <a class="primary" href="/es" data-lang="es">Español</a>
+        <a class="ghost" href="/en" data-lang="en">English</a>
+      </div>
+      <p class="hint" id="status">Continuando automáticamente…</p>
       <noscript>
-        <p style="margin-top:1rem;"><a href="/en">Continue in English</a></p>
+        <p class="hint">JavaScript is off — pick a language above.</p>
       </noscript>
     </main>
+    <script is:inline>
+      (function () {
+        function localeFromPreference() {
+          try {
+            var stored = localStorage.getItem('fa_lang');
+            var cookieMatch = document.cookie.match(/(?:^|; )fa_lang=([^;]+)/);
+            var cookie = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+            var preferred = stored || cookie;
+            if (preferred === 'es' || preferred === 'en') return preferred;
+          } catch (e) {}
+          var nav = (navigator.language || 'en').toLowerCase();
+          return nav.indexOf('es') === 0 ? 'es' : 'en';
+        }
+
+        var suffix = window.location.search + window.location.hash;
+        var locale = localeFromPreference();
+        var href = '/' + locale + suffix;
+        var status = document.getElementById('status');
+        if (status) {
+          status.textContent = locale === 'es'
+            ? 'Entrando a la versión en español…'
+            : 'Continuing in English…';
+        }
+
+        document.querySelectorAll('[data-lang]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            try {
+              var lang = el.getAttribute('data-lang');
+              if (!lang) return;
+              localStorage.setItem('fa_lang', lang);
+              document.cookie = 'fa_lang=' + lang + ';path=/;max-age=31536000;samesite=lax';
+            } catch (e) {}
+          });
+        });
+
+        window.setTimeout(function () {
+          window.location.replace(href);
+        }, 450);
+      })();
+    </script>
   </body>
 </html>

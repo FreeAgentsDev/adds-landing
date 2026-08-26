@@ -32,6 +32,7 @@ export const en: Dictionary = {
     partners: 'Partners',
     contact: 'Contact',
     cta: 'Talk to FreeAgents',
+    login: 'Sign in',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
   },
@@ -44,6 +45,7 @@ export const en: Dictionary = {
     primaryCta: 'Talk to FreeAgents',
     secondaryCta: 'See what we build',
     note: 'Remote-ready · Discovery call · No commitment required',
+    localCta: 'Run a local business? Build your solution in minutes',
   },
 
   trust: {

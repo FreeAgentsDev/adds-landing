@@ -2,6 +2,7 @@
 import type { Locale } from '../i18n/config';
 import { localePath } from '../i18n/utils';
 import type { Dictionary } from '../content';
+import { clientsAppUrl } from '../lib/clients-app';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -35,6 +36,9 @@ const navLinks = [
           </a>
         ))}
         <LanguageSwitcher locale={locale} dict={dict} />
+        <a href={clientsAppUrl('/login')} class="text-slate-400 hover:text-white transition-colors text-sm font-medium border border-slate-700 hover:border-primary/40 px-4 py-2 rounded-lg">
+          {dict.nav.login}
+        </a>
         <a href={homeAnchors ? '#contact' : `${home}#contact`} class="bg-primary text-background-dark px-5 py-2 rounded-lg font-bold text-sm hover:shadow-[0_0_15px_rgba(19,200,236,0.4)] hover:brightness-110 transition-all">
           {dict.nav.cta}
         </a>
@@ -64,6 +68,9 @@ const navLinks = [
         </li>
       ))}
       <li class="mt-2">
+        <a href={clientsAppUrl('/login')} class="block py-3 px-3 rounded-lg border border-white/10 text-slate-300 font-medium text-center mobile-nav-link">{dict.nav.login}</a>
+      </li>
+      <li>
         <a href={homeAnchors ? '#contact' : `${home}#contact`} class="block py-3 px-3 rounded-lg bg-primary/10 text-primary font-bold text-center mobile-nav-link">{dict.nav.cta}</a>
       </li>
     </ul>

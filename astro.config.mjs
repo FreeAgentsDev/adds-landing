@@ -1,13 +1,13 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://freeagentsdev.com',
   integrations: [
-    tailwind(),
     react(),
+    tailwind({ applyBaseStyles: false }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
@@ -16,7 +16,6 @@ export default defineConfig({
           es: 'es',
         },
       },
-      // Root `/` is only a language trampoline — do not index it.
       filter: (page) => {
         try {
           const { pathname } = new URL(page);
@@ -48,6 +47,8 @@ export default defineConfig({
     locales: ['en', 'es'],
     routing: {
       prefixDefaultLocale: true,
+      // Serve src/pages/index.astro at "/" instead of Astro's default redirect HTML.
+      redirectToDefaultLocale: false,
     },
   },
 });
